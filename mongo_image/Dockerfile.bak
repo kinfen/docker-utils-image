@@ -1,0 +1,30 @@
+
+FROM kinfen/kadm:base
+
+MAINTAINER Kinfen
+
+
+# Set one or more individual labels
+LABEL version="0.0.1-beta"
+LABEL description="for mongod"
+LABEL publishdate="2018-8-27"
+
+
+RUN mkdir -p /mongo data/db
+WORKDIR /home/mongouser
+# Copy the current directory contents into the container at /app
+ADD . /mongo
+
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+
+RUN apt-get install -y --no-install-recommends software-properties-common
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu $(cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d= -f2)/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+
+# update the apt package
+RUN apt-get update && apt-get install -y mongodb-org
+
+EXPOSE 27017
+
+ENTRYPOINT mongod
+
+

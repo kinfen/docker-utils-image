@@ -1,0 +1,21 @@
+
+FROM kinfen/kadm:base
+
+MAINTAINER Kinfen
+
+
+# Set one or more individual labels
+LABEL version="0.0.1-beta"
+LABEL description="for app"
+LABEL publishdate="2018-8-27"
+
+
+RUN mkdir -p /www/nodejs
+WORKDIR /www/nodejs
+
+RUN apt-get install -y nodejs 
+
+EXPOSE 3000 80
+
+
+

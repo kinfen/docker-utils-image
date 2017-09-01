@@ -1,0 +1,69 @@
+version: "3"
+services:
+  ftp:
+    image:  avenus/vsftpd-alpine
+    ports:
+      - "20-21:20-21"
+      - "60000-60010:60000-60010"
+    networks:
+      - webnet
+    volumes:
+      - "/shared/jenkins:/var/jenkins_home"
+    environment:
+      - FTP_USER=kinfen
+      - FTP_PASS=deadkill
+      - PASV_ADDRESS=kinfen.in@gmail.com
+      - PASV_MIN=60000
+      - PASV_MAX=60010
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 100M
+  jenkins:
+    image:  jenkins/jenkins:2.76-alpine
+    ports:
+      - "8081:8080"
+    networks:
+      - webnet
+    volumes:
+      - "/shared/jenkins:/var/jenkins_home"
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 800M
+  # web:
+  #   # replace username/repo:tag with your name and image details
+  #   image: kinfen/kadm:nginx
+  #   deploy:
+  #     replicas: 2
+  #     restart_policy:
+  #       condition: on-failure
+  #     resources:
+  #       limits:
+  #         cpus: "0.2"
+  #         memory: 200M
+  #   ports:
+  #     - "80:80"
+  #   networks:
+  #     - webnet
+  #   logging:
+  #     driver: "json-file"
+  visualizer:
+    image: dockersamples/visualizer:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+networks:
+  webnet:

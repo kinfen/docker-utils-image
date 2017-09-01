@@ -1,0 +1,11 @@
+
+{
+    "server": "0.0.0.0",
+    "port_password": {
+        "5234": "deadkill",
+        "5235": "deadkill",
+        "5236": "godgod"
+    },
+    "timeout": 300,
+    "method": "aes-256-cfb"
+}

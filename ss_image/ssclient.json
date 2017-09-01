@@ -1,0 +1,10 @@
+{
+    "server":"socker_server",
+    "server_port":5234,
+    "local_address": "0.0.0.0",
+    "local_port":52080,
+    "password":"deadkill",
+    "timeout":300,
+    "method":"aes-256-cfb",
+    "fast_open": true
+}
