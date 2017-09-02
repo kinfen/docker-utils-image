@@ -1,18 +1,18 @@
 version: "3"
 services:
   ftp:
-    image:  avenus/vsftpd-alpine
+    image:  kinfen/kadm:vsftpd
     ports:
       - "20-21:20-21"
       - "60000-60010:60000-60010"
     networks:
       - webnet
     volumes:
-      - "/shared/jenkins:/var/jenkins_home"
+      - "~/shared:/home/testuser/"
     environment:
-      - FTP_USER=kinfen
+      - FTP_USER=testuser
       - FTP_PASS=deadkill
-      - PASV_ADDRESS=kinfen.in@gmail.com
+      - PASV_ADDRESS=
       - PASV_MIN=60000
       - PASV_MAX=60010
     deploy:
@@ -22,21 +22,44 @@ services:
         limits:
           cpus: "0.5"
           memory: 100M
-  jenkins:
-    image:  jenkins/jenkins:2.76-alpine
-    ports:
-      - "8081:8080"
-    networks:
-      - webnet
-    volumes:
-      - "/shared/jenkins:/var/jenkins_home"
-    deploy:
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 800M
+  #
+  # ftppam:
+  #   image:  kinfen/kadm:ftp
+  #   ports:
+  #     - "30-31:20-21"
+  #     - "50000-50010:60000-60010"
+  #   networks:
+  #     - webnet
+  #   volumes:
+  #     - "~/shared1:/home/vsftpd/${FTP_USER}/"
+  #   environment:
+  #     - FTP_USER=kinfen2
+  #     - FTP_PASS=deadkill
+  #     - PASV_ADDRESS=
+  #     - PASV_MIN=60000
+  #     - PASV_MAX=60010
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #     resources:
+  #       limits:
+  #         cpus: "0.5"
+  #         memory: 100M
+  # jenkins:
+  #   image:  jenkins/jenkins:2.76-alpine
+  #   ports:
+  #     - "8081:8080"
+  #   networks:
+  #     - webnet
+  #   volumes:
+  #     - "~/shared2:/var/jenkins_home"
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #     resources:
+  #       limits:
+  #         cpus: "0.5"
+  #         memory: 800M
   # web:
   #   # replace username/repo:tag with your name and image details
   #   image: kinfen/kadm:nginx

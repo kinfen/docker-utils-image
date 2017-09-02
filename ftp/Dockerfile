@@ -2,9 +2,9 @@ FROM kinfen/kadm:lite
 
 MAINTAINER kinfen
 
-ENV FTP_USER=kinfen \
-    FTP_PASS=deadkill \
-    PASV_ADDRESS=someadres.com \
+ENV FTP_USER=foo \
+    FTP_PASS=foo123 \
+    PASV_ADDRESS= \
     PASV_MIN=60000 \
     PASV_MAX=60010
 
@@ -33,10 +33,10 @@ RUN echo "local_enable=YES" >> /etc/vsftpd/vsftpd.conf \
   && echo "pasv_enable=Yes" >> /etc/vsftpd/vsftpd.conf \
   && echo "pasv_promiscuous=Yes" >> /etc/vsftpd/vsftpd.conf \  
   && echo "listen_ipv6=NO" >> /etc/vsftpd/vsftpd.conf \
-  && echo "nopriv_user=$FTP_USER" >> /etc/vsftpd/vsftpd.conf \
-  && echo "ftp_username=$FTP_USER" >> /etc/vsftpd/vsftpd.conf \
-  && echo "guest_username=$FTP_USER" >> /etc/vsftpd/vsftpd.conf \
-  && echo "chown_username=$FTP_USER" >> /etc/vsftpd/vsftpd.conf \
+  && echo "nopriv_user=www-data" >> /etc/vsftpd/vsftpd.conf \
+  && echo "ftp_username=www-data" >> /etc/vsftpd/vsftpd.conf \
+  && echo "guest_username=www-data" >> /etc/vsftpd/vsftpd.conf \
+  && echo "chown_username=www-data" >> /etc/vsftpd/vsftpd.conf \
   && echo "chown_uploads=YES" >> /etc/vsftpd/vsftpd.conf \
   && echo "chown_upload_mode=0600" >> /etc/vsftpd/vsftpd.conf \  
   && echo "seccomp_sandbox=NO" >> /etc/vsftpd/vsftpd.conf \ 
@@ -55,11 +55,11 @@ RUN \
   make install && \
   cd .. && \
   rm -rvf pam && \
-  mkdir -p /home/$FTP_USER && \
+  mkdir -p /home/www-data && \
   #82 is the standard uid/gid for "www-data" in Alpine for php-fpm. Php need write permision, so let's give them 
-  addgroup -g 82 -S $FTP_USER && \
-  adduser -u 82 -S -D -G ${FTP_USER} -h /home/$FTP_USER -s /sbin/nologin $FTP_USER && \
-  chown -R $FTP_USER:$FTP_USER /home/${FTP_USER} && \
+  addgroup -g 82 -S www-data && \
+  adduser -u 82 -S -D -G www-data -h /home/www-data -s /sbin/nologin www-data && \
+  chown -R www-data:www-data /home/www-data && \
   mkdir -p /var/run/vsftpd/empty && \
   mkdir -p /home/vsftpd && \
   mkdir -p /conf/vsftpd && \
@@ -74,8 +74,9 @@ RUN \
  
 
 RUN chmod +x /usr/sbin/vsftpd.sh
-
-CMD ["/usr/sbin/vsftpd","/etc/vsftpd/vsftpd.conf"]
-
 EXPOSE 20-21 $PASV_MIN-$PASV_MAX
+
+CMD /usr/sbin/vsftpd.sh
+
+
 
