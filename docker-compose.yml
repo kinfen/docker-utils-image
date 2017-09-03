@@ -1,5 +1,6 @@
 version: "3"
 services:
+  #ftp service we use ftp tu control all the ubuntu use directory now.
   ftp:
     image:  kinfen/kadm:vsftpd
     ports:
@@ -8,9 +9,9 @@ services:
     networks:
       - webnet
     volumes:
-      - "~/shared:/home/testuser/"
+      - "./${DOCKER_FOLD}:/home/kadmftp"
     environment:
-      - FTP_USER=testuser
+      - FTP_USER=kadmftp
       - FTP_PASS=deadkill
       - PASV_ADDRESS=
       - PASV_MIN=60000
@@ -20,8 +21,8 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: "0.5"
-          memory: 100M
+          cpus: "0.01"
+          memory: 10M
   #
   # ftppam:
   #   image:  kinfen/kadm:ftp
@@ -45,21 +46,54 @@ services:
   #       limits:
   #         cpus: "0.5"
   #         memory: 100M
-  # jenkins:
-  #   image:  jenkins/jenkins:2.76-alpine
-  #   ports:
-  #     - "8081:8080"
-  #   networks:
-  #     - webnet
-  #   volumes:
-  #     - "~/shared2:/var/jenkins_home"
-  #   deploy:
-  #     restart_policy:
-  #       condition: on-failure
-  #     resources:
-  #       limits:
-  #         cpus: "0.5"
-  #         memory: 800M
+  jenkins:
+    image:  kinfen/kadm:jenkins
+    ports:
+      - "8081:8080"
+    networks:
+      - webnet
+      - innernet
+    volumes:
+      - "./${DOCKER_FOLD}/jenkins:/var/jenkins_home"
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.6"
+          memory: 500M
+  agent:
+    image:  kinfen/kadm:agent
+    ports:
+      - "2022:22"
+    networks:
+      - webnet
+    volumes:
+      - "$DOCKER_PATH:/usr/bin/docker"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.01"
+          memory: 20M
+  client:
+    image:  kinfen/kadm:agent
+    ports:
+      - "2023:22"
+    networks:
+      - webnet
+    volumes:
+      - "$DOCKER_PATH:/usr/bin/docker"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.01"
+          memory: 20M
   # web:
   #   # replace username/repo:tag with your name and image details
   #   image: kinfen/kadm:nginx
@@ -90,3 +124,4 @@ services:
       - webnet
 networks:
   webnet:
+  innernet:
