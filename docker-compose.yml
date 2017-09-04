@@ -64,36 +64,48 @@ services:
           memory: 500M
   agent:
     image:  kinfen/kadm:agent
+    depends_on:
+      - jenkins
     ports:
       - "2022:22"
     networks:
-      - webnet
+      - innernet
     volumes:
       - "$DOCKER_PATH:/usr/bin/docker"
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./${DOCKER_FOLD}/jenkins/workspace:/home/root/workspace"
     deploy:
       restart_policy:
         condition: on-failure
       resources:
         limits:
-          cpus: "0.01"
-          memory: 20M
-  client:
-    image:  kinfen/kadm:agent
-    ports:
-      - "2023:22"
-    networks:
-      - webnet
-    volumes:
-      - "$DOCKER_PATH:/usr/bin/docker"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    deploy:
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: "0.01"
-          memory: 20M
+          cpus: "0.1"
+          memory: 200M
+  # mongo:
+  #   image:  kinfen/kadm:mongo
+  #   networks:
+  #     - innernet
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #     resources:
+  #       limits:
+  #         cpus: "0.1"
+  #         memory: 100M
+  # app:
+  #   image:  kinfen/kadm:app_last
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - webnet
+  #     - innernet
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #     resources:
+  #       limits:
+  #         cpus: "0.2"
+  #         memory: 100M
   # web:
   #   # replace username/repo:tag with your name and image details
   #   image: kinfen/kadm:nginx
