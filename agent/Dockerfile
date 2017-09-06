@@ -15,8 +15,10 @@ ADD ssh-entry.sh /usr/local/bin
 
 # update the apt package
 
+ARG dockerGid=999
 
-RUN set -e \
+USER root
+RUN set -x \
 	&& apk --update add --no-cache --virtual .build-deps \
 	yarn \
 	openssh \
@@ -28,6 +30,16 @@ RUN set -e \
 	&& mkdir -p /root/.ssh \
 	&& touch /root/.ssh/authorized_keys
 
+
+RUN set -x \
+	&& mkdir -p /.tmp && cd /.tmp \
+	&& apk --update add --no-cache --virtual .build-step curl \
+ 	&& curl -sSL https://download.docker.com/linux/static/stable/x86_64/docker-17.06.1-ce.tgz | tar xz --strip 1 \
+	&& cp /.tmp/docker /usr/bin/docker \
+	&& rm -rf /.tmp \
+	&& apk del .build-step \
+	&& rm -rf /var/cache/apk/* /tmp/* \ 
+	&& rm -rf /var/lib/apt/lists/* 
 
 EXPOSE 22
 

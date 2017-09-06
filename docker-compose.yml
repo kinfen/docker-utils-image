@@ -71,9 +71,7 @@ services:
     networks:
       - innernet
     volumes:
-      - "$DOCKER_PATH:/usr/bin/docker"
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "./${DOCKER_FOLD}/jenkins/workspace:/home/root/workspace"
     deploy:
       restart_policy:
         condition: on-failure

@@ -21,10 +21,14 @@ if [ ! -x "$DOCKER_FOLD/jenkins" ]; then
 fi
 
 #set all resources can rwx for all the containers
-chown -R $USER_NAME $DOCKER_FOLD
-chown -R $USER_NAME $DOCKER_PATH
-chown -R $USER_NAME /var/run/docker.sock
-
+chmod 777 $DOCKER_FOLD
+chmod 777 $DOCKER_PATH
+chmod 777 /var/run/docker.sock
+# chown -R $USER_NAME $DOCKER_FOLD
+# chown -R $USER_NAME $DOCKER_PATH
+# chown -R $USER_NAME /var/run/docker.sock
+# chmod -R 777  $DOCKER_PATH
+# chmod -R 777  /var/run/docker.sock
 echo "准备发布服务"  >> docker.log
 docker stack deploy --compose-file docker-compose.yml $STACK_NAME
 
