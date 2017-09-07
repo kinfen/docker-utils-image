@@ -1,0 +1,18 @@
+version: "3"
+services:
+  #ftp service we use ftp tu control all the ubuntu use directory now.
+  server:
+    image:  kinfen/kadm:ss
+    ports:
+      - "5234-5236:5234-5236"
+    networks:
+      - webnet
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+networks:
+  webnet:

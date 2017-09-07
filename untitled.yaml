@@ -1,0 +1,27 @@
+version: "3"
+services:
+  #ftp service we use ftp tu control all the ubuntu use directory now.
+  server:
+    image:  kinfen/kadm:ss
+    ports:
+      - "20-21:20-21"
+      - "60000-60010:60000-60010"
+    networks:
+      - webnet
+    volumes:
+      - "./${DOCKER_FOLD}:/home/kadmftp"
+    environment:
+      - FTP_USER=kadmftp
+      - FTP_PASS=deadkill
+      - PASV_ADDRESS=
+      - PASV_MIN=60000
+      - PASV_MAX=60010
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.01"
+          memory: 10M
+networks:
+  webnet:

@@ -9,7 +9,10 @@ services:
     networks:
       - webnet
     volumes:
-      - "./${DOCKER_FOLD}:/home/kadmftp"
+      - volume:/home/kadmftp/volume
+      - logs:/home/kadmftp/log
+      - jenkins:/home/kadmftp/jenkins
+      - nginx:/home/kadmftp/nginx
     environment:
       - FTP_USER=kadmftp
       - FTP_PASS=deadkill
@@ -21,8 +24,9 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: "0.01"
-          memory: 10M
+          cpus: "0.3"
+          memory: 200M
+
   #
   # ftppam:
   #   image:  kinfen/kadm:ftp
@@ -46,6 +50,43 @@ services:
   #       limits:
   #         cpus: "0.5"
   #         memory: 100M
+  nginx:
+    image:  kinfen/kadm:nginx
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+      - innernet
+    volumes:
+      - nginx:/etc/nginx
+      - logs:/var/log
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 50M
+  apps:
+    image:  kinfen/kadm:app_last
+    ports:
+      - "80"
+    networks:
+      - webnet
+      - innernet
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+    entrypoint:
+      - node
+      - /www/index.js
+    environment:
+      - MONGOLAB_URL=mongodb://mongo/kadm
+
   jenkins:
     image:  kinfen/kadm:jenkins
     ports:
@@ -54,7 +95,7 @@ services:
       - webnet
       - innernet
     volumes:
-      - "./${DOCKER_FOLD}/jenkins:/var/jenkins_home"
+      - "jenkins:/var/jenkins_home"
     deploy:
       restart_policy:
         condition: on-failure
@@ -62,16 +103,18 @@ services:
         limits:
           cpus: "0.8"
           memory: 1G
+
   agent:
     image:  kinfen/kadm:agent
     depends_on:
       - jenkins
     ports:
-      - "2022:22"
+      - "22"
     networks:
       - innernet
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - /var/run/docker.sock:/var/run/docker.sock
+      - yarncache:/usr/local/share/.cache/yarn/v1
     deploy:
       restart_policy:
         condition: on-failure
@@ -79,17 +122,21 @@ services:
         limits:
           cpus: "0.8"
           memory: 1G
-  # mongo:
-  #   image:  kinfen/kadm:mongo
-  #   networks:
-  #     - innernet
-  #   deploy:
-  #     restart_policy:
-  #       condition: on-failure
-  #     resources:
-  #       limits:
-  #         cpus: "0.1"
-  #         memory: 100M
+  mongo:
+    image:  kinfen/kadm:mongo
+    networks:
+      - innernet
+    ports:
+      - "27017"
+    volumes:
+      - mongo:/data/db
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 500M
   # app:
   #   image:  kinfen/kadm:app_last
   #   ports:
@@ -136,4 +183,9 @@ networks:
   webnet:
   innernet:
 volumes:
-  logs
+  logs:
+  jenkins:
+  volume:
+  nginx:
+  mongo:
+  yarncache:
