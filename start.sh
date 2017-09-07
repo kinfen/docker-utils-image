@@ -20,10 +20,18 @@ if [ ! -x "$DOCKER_FOLD/jenkins" ]; then
 	mkdir -p $DOCKER_FOLD"/jenkins" 
 fi
 
+if [ ! -x "$DOCKER_FOLD/nginx" ]; then  
+	mkdir -p $DOCKER_FOLD"/nginx" 
+fi
+
+if [ ! -x "$DOCKER_FOLD/log" ]; then  
+	mkdir -p $DOCKER_FOLD"/log" 
+fi
+
 #set all resources can rwx for all the containers
-chmod 777 $DOCKER_FOLD
-chmod 777 $DOCKER_PATH
-chmod 777 /var/run/docker.sock
+chmod -R 777 $DOCKER_FOLD
+chmod -R 777 $DOCKER_PATH
+chmod -R 777 /var/run/docker.sock
 # chown -R $USER_NAME $DOCKER_FOLD
 # chown -R $USER_NAME $DOCKER_PATH
 # chown -R $USER_NAME /var/run/docker.sock
