@@ -54,6 +54,7 @@ services:
     image:  kinfen/kadm:nginx
     ports:
       - "80:80"
+      - "8080-8081:8080-8081"
     networks:
       - webnet
       - innernet
@@ -61,6 +62,8 @@ services:
       - nginx:/etc/nginx
       - logs:/var/log
     deploy:
+      placement:
+        constraints: [node.role == manager]
       restart_policy:
         condition: on-failure
       resources:
@@ -90,7 +93,7 @@ services:
   jenkins:
     image:  kinfen/kadm:jenkins
     ports:
-      - "8081:8080"
+      - "8080"
     networks:
       - webnet
       - innernet
@@ -171,7 +174,7 @@ services:
   visualizer:
     image: dockersamples/visualizer:latest
     ports:
-      - "8080:8080"
+      - "8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     deploy:
