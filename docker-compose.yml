@@ -187,8 +187,14 @@ networks:
   innernet:
 volumes:
   logs:
-  jenkins:
+    driver: convoy
   volume:
+    driver: convoy
+  jenkins:
+    driver: convoy
   nginx:
+    driver: convoy
   mongo:
+    driver: convoy
   yarncache:
+    driver: convoy
