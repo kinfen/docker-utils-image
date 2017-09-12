@@ -20,6 +20,8 @@ services:
       - PASV_MIN=60000
       - PASV_MAX=60010
     deploy:
+      placement:
+        constraints: [node.role == manager]
       restart_policy:
         condition: on-failure
       resources:
@@ -54,7 +56,6 @@ services:
     image:  kinfen/kadm:nginx
     ports:
       - "80:80"
-      - "8080-8081:8080-8081"
     networks:
       - webnet
       - innernet
@@ -93,7 +94,7 @@ services:
   jenkins:
     image:  kinfen/kadm:jenkins
     ports:
-      - "8080"
+      - "8081:8080"
     networks:
       - webnet
       - innernet
@@ -174,7 +175,7 @@ services:
   visualizer:
     image: dockersamples/visualizer:latest
     ports:
-      - "8080"
+      - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     deploy:
@@ -187,8 +188,14 @@ networks:
   innernet:
 volumes:
   logs:
-  jenkins:
+    driver: convoy
   volume:
+    driver: convoy
+  jenkins:
+    driver: convoy
   nginx:
+    driver: convoy
   mongo:
+    driver: convoy
   yarncache:
+    driver: convoy
