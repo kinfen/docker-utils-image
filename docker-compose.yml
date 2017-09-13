@@ -54,7 +54,6 @@ services:
     image:  kinfen/kadm:nginx
     ports:
       - "80:80"
-      - "8080-8081:8080-8081"
     networks:
       - webnet
       - innernet
@@ -93,7 +92,7 @@ services:
   jenkins:
     image:  kinfen/kadm:jenkins
     ports:
-      - "8080"
+      - "8081:8080"
     networks:
       - webnet
       - innernet
@@ -112,8 +111,9 @@ services:
     depends_on:
       - jenkins
     ports:
-      - "22"
+      - "2022:22"
     networks:
+      - webnet
       - innernet
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -174,7 +174,7 @@ services:
   visualizer:
     image: dockersamples/visualizer:latest
     ports:
-      - "8080"
+      - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     deploy:

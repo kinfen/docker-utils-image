@@ -1,15 +1,31 @@
 #!/bin/bash
 
-VFS_PATH=~/volumes
+VFS_PATH=/swarmvolumes
 VOLUME_NAME="jenkins logs nginx mongo yarncache"
 
-if [ ! -f "convoy.tar.gz" ]; then
+#if [ $(ps | grep convoy) ]>0; then
+	killall convoy
+#fi
+
+if [ -d "$VFS_PATH/config" ]; then
+	echo "清除设置，强制读取新设置"
+	rm  $FS_PATH/config
+fi
+
+if [ -f "/var/lib/rancher/convoy/vfs/vfs.cfg" ]; then
+	echo "清除旧的设置，强制读取新设置"
+	rm /var/lib/rancher/convoy/vfs/vfs.cfg
+fi
+
+
+
+
+if [ ! -f "/usr/local/bin/convoy" ]; then
 	wget https://github.com/rancher/convoy/releases/download/v0.5.0/convoy.tar.gz
 	tar xvzf convoy.tar.gz
 	cp convoy/convoy convoy/convoy-pdata_tools /usr/local/bin/
 	mkdir -p /etc/docker/plugins/
 	bash -c 'echo "unix:///var/run/convoy/convoy.sock" > /etc/docker/plugins/convoy.spec'
-	cp ./convoy.sh /etc/init.d/convoy
 fi
 
 
@@ -19,16 +35,12 @@ if [ ! $1 ]; then
 	exit 1
 fi
 
-if [ ! -f $VFS_PATH ]; then
+if [ ! -d $VFS_PATH ]; then
+	echo "创建目录"
 	mkdir -p $VFS_PATH
-	mount -t nfs4 $1:/ $VFS_PATH
+	chmod -R 777 $VFS_PATH
 fi
-
-if [ ! -f "/etc/init.d/convoy" ]; then
-	cp ./convoy.sh /etc/init.d/convoy
-	chmod 777 /etc/init.d/convoy
-fi
-
+mount -t nfs4 -o soft -o retry=10 $1:/ $VFS_PATH
 nohup convoy daemon --drivers vfs --driver-opts vfs.path=$VFS_PATH > /var/log/convoy.log 2>&1 &
 
 
