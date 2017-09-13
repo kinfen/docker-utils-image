@@ -13,6 +13,7 @@ services:
       - logs:/home/kadmftp/log
       - jenkins:/home/kadmftp/jenkins
       - nginx:/home/kadmftp/nginx
+      - mongo:/home/kadmftp/mongo
     environment:
       - FTP_USER=kadmftp
       - FTP_PASS=deadkill
@@ -87,7 +88,7 @@ services:
       - node
       - /www/index.js
     environment:
-      - MONGOLAB_URL=mongodb://mongo/kadm
+      - MONGOLAB_UR=mongodb://mystack_mongo/kadm
 
   jenkins:
     image:  kinfen/kadm:jenkins
@@ -184,7 +185,9 @@ services:
       - webnet
 networks:
   webnet:
+    driver: overlay
   innernet:
+    driver: overlay
 volumes:
   logs:
     driver: convoy
