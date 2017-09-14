@@ -21,7 +21,7 @@ fi
 
 
 if [ ! -f "/usr/local/bin/convoy" ]; then
-	wget https://github.com/rancher/convoy/releases/download/v0.5.0/convoy.tar.gz
+	#wget https://github.com/rancher/convoy/releases/download/v0.5.0/convoy.tar.gz
 	tar xvzf convoy.tar.gz
 	cp convoy/convoy convoy/convoy-pdata_tools /usr/local/bin/
 	mkdir -p /etc/docker/plugins/
@@ -42,7 +42,6 @@ if [ ! -d $VFS_PATH ]; then
 fi
 mount -t nfs4 -o soft -o retry=10 $1:/ $VFS_PATH
 nohup convoy daemon --drivers vfs --driver-opts vfs.path=$VFS_PATH > /var/log/convoy.log 2>&1 &
-
 
 
 # echo $@

@@ -2,7 +2,7 @@ version: "3"
 services:
   #ftp service we use ftp tu control all the ubuntu use directory now.
   ftp:
-    image:  kinfen/kadm:vsftpd
+    image:  kinfen/utils:vsftpd
     ports:
       - "20-21:20-21"
       - "60000-60010:60000-60010"
@@ -52,7 +52,7 @@ services:
   #         cpus: "0.5"
   #         memory: 100M
   nginx:
-    image:  kinfen/kadm:nginx
+    image:  kinfen/utils:nginx
     ports:
       - "80:80"
     networks:
@@ -91,7 +91,7 @@ services:
       - MONGOLAB_UR=mongodb://mystack_mongo/kadm
 
   jenkins:
-    image:  kinfen/kadm:jenkins
+    image:  kinfen/utils:jenkins
     ports:
       - "8081:8080"
     networks:
@@ -134,6 +134,8 @@ services:
       - "27017"
     volumes:
       - mongo:/data/db
+    command:
+      - "mongod"
     deploy:
       restart_policy:
         condition: on-failure
