@@ -9,7 +9,7 @@ services:
       - webnet
     deploy:
       placement:
-        constraints: [node.role == worker]
+        constraints: [node.role == manager]
       restart_policy:
         condition: on-failure
       resources:

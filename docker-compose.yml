@@ -104,8 +104,8 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: "0.8"
-          memory: 1G
+          cpus: "0.3"
+          memory: 600M
 
   agent:
     image:  kinfen/kadm:agent
@@ -125,7 +125,7 @@ services:
       resources:
         limits:
           cpus: "0.8"
-          memory: 1G
+          memory: 600M
   mongo:
     image:  kinfen/kadm:mongo
     networks:

@@ -41,6 +41,12 @@ if [ ! -d $VFS_PATH ]; then
 	chmod -R 777 $VFS_PATH
 fi
 mount -t nfs4 -o soft -o retry=10 $1:/ $VFS_PATH
+
+grep $1:/ /etc/fstab > /dev/null
+if [ ! $? -eq 0 ]; then
+	echo "$1:/ $VFS_PATH nfs rw" >> /etc/fstab
+fi
+
 nohup convoy daemon --drivers vfs --driver-opts vfs.path=$VFS_PATH > /var/log/convoy.log 2>&1 &
 
 
