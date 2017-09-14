@@ -118,7 +118,7 @@ services:
       - innernet
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - yarncache:/usr/local/share/.cache/yarn/v1
+      - npmcache:/root/.npm
     deploy:
       restart_policy:
         condition: on-failure
@@ -201,5 +201,5 @@ volumes:
     driver: convoy
   mongo:
     driver: convoy
-  yarncache:
+  npmcache:
     driver: convoy

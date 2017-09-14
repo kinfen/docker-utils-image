@@ -47,7 +47,26 @@ if [ ! $? -eq 0 ]; then
 	echo "$1:/ $VFS_PATH nfs rw" >> /etc/fstab
 fi
 
+if [ ! -f "/etc/init.d/convoy" ]; then
+
+	header="### BEGIN INIT INFO
+# Provides:          bbzhh.com
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: tomcat service
+# Description:       tomcat service daemon
+### END INIT INFO"
+	echo "添加自启动项"
+	#touch /etc/init.d/convoy
+	echo "#!/bin/bash \n $header \nnohup convoy daemon --drivers vfs --driver-opts vfs.path=$VFS_PATH > /var/log/convoy.log 2>&1 &" > /etc/init.d/convoy
+	chmod 755 /etc/init.d/convoy
+	update-rc.d convoy defaults 95
+fi
+
 nohup convoy daemon --drivers vfs --driver-opts vfs.path=$VFS_PATH > /var/log/convoy.log 2>&1 &
+
 
 
 # echo $@
