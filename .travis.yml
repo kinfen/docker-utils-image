@@ -4,14 +4,17 @@ services:
   - docker
 before_install:
 - docker -v
-- UTILS1="utils-lite"
+- UTILS="utils-lite utils-nodexm"
 
 script:
-- docker build ./${UTILS1} -t kinfen/${UTILS1}:latest
+- for util in $UTILS; do
+  docker build ./$util -t kinfen/$util:latest
+  done
+
 
 after_success:
-  - docker login -u $DOCKER-USERNAME -p $DOCKER-PASSWORD
-  - docker push kinfen/${UTILS1}:latest
-
-  
+- docker login -u $DOCKER-USERNAME -p $DOCKER-PASSWORD
+- for util in $UTILS; do
+  docker push kinfen/$util:latest
+  done  
   
