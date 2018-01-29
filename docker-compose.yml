@@ -78,6 +78,7 @@ services:
       - webnet
       - innernet
     deploy:
+      replicas: 2
       restart_policy:
         condition: on-failure
       resources:

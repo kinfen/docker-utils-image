@@ -10,7 +10,8 @@ LABEL description="for app"
 LABEL publishdate="2018-8-27"
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 8.4.0
+ENV NODE_VERSION 8.8.0
+ENV NPM_VERSION 5.5.1
 
 RUN addgroup -g 1000 node \
     && adduser -u 1000 -G node -s /bin/sh -D node \
@@ -54,6 +55,9 @@ RUN addgroup -g 1000 node \
     && cd .. \
     && rm -Rf "node-v$NODE_VERSION" \
     && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
+
+RUN set -x && \
+	npm i -g npm@$NPM_VERSION
 
 ENTRYPOINT node
 
