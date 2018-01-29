@@ -7,14 +7,9 @@ before_install:
 - UTILS="utils-lite utils-nodexm"
 
 script:
-- for util in $UTILS; do
-- docker build ./$util -t kinfen/$util:latest
-- done
+- sh build.sh
 
 
 after_success:
-- docker login -u $DOCKER-USERNAME -p $DOCKER-PASSWORD
-- for util in $UTILS; do
-- docker push kinfen/$util:latest
-- done  
+- sh push.sh 
   
