@@ -18,10 +18,7 @@ set -x \
 	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 	$(lsb_release -cs) \
 	stable" \
-	&&  sudo apt-get update && apt-get install -y docker-ce \
-	&&	echo "准备监控工具" \
-	&& sudo wget https://github.com/bcicen/ctop/releases/download/v0.6.1/ctop-0.6.1-linux-amd64 -O /usr/bin/ctop \
-	&& sudo chmod +x /usr/bin/ctop
+	&&  sudo apt-get update && apt-get install -y docker-ce 
 
    	# && echo "安装aufs支持" \
 	# && sudo apt-get update \
