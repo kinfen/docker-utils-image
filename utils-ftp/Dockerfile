@@ -1,4 +1,4 @@
-FROM kinfen/kadm:lite
+FROM kinfen/utils-lite
 
 MAINTAINER kinfen
 

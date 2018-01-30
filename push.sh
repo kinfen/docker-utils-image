@@ -5,7 +5,9 @@ UTILS="utils-lite \
 	utils-vsftpd \
 	utils-privoxy
 	utils-mongo
-	utils-jenkins"
+	utils-jenkins
+	utils-ftp
+	utils-dockeragent"
 
 for util in $UTILS; do
 	docker push kinfen/$util:latest
