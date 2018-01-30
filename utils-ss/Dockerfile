@@ -17,8 +17,8 @@ RUN mkdir /ss /ss/logs
 WORKDIR /ss
 
 # Copy the current directory contents into the container at /app
-ADD ./*.json /ss
-ADD ./*.ini /ss
+ADD ./*.json /ss/
+ADD ./*.ini /ss/
 
 # update the apt package
 RUN set -x \
@@ -34,7 +34,7 @@ RUN set -x \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /var/cache/apt/archives
 
-ADD ./supervisord.conf /etc
+ADD ./supervisord.conf /etc/
 
 ENTRYPOINT supervisord
 CMD ['-c', '/etc/supervisord.conf']
