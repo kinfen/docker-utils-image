@@ -7,6 +7,7 @@ UTILS="utils-lite \
 	utils-mongo
 	utils-jenkins
 	utils-ftp
+	utils-nodexm
 	utils-dockeragent"
 
 for util in $UTILS; do
