@@ -1,5 +1,5 @@
 
-FROM kinfen/utils:base
+FROM kinfen/utils-baseimage
 
 MAINTAINER Kinfen
 

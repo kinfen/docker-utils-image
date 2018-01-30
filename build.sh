@@ -1,8 +1,8 @@
 #!/bin/bash
 
-UTILS="utils-lite
-	utils-baseimage
-	utils-vsftpd
+UTILS="utils-lite \
+	utils-baseimage \
+	utils-vsftpd \
 	utils-privoxy"
 
 for util in $UTILS; do
