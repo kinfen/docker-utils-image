@@ -1,11 +1,12 @@
 #!/bin/bash
 
-UTILS="utils-lite \
-	utils-baseimage \
-	utils-vsftpd \
+UTILS="utils-lite
+	utils-baseimage
+	utils-vsftpd
 	utils-privoxy
 	utils-mongo
 	utils-jenkins
+	utils-nginx
 	utils-ftp
 	utils-nodexm
 	utils-dockeragent"

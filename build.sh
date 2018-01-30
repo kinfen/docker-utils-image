@@ -6,6 +6,7 @@ UTILS="utils-lite
 	utils-privoxy
 	utils-mongo
 	utils-jenkins
+	utils-nginx
 	utils-ftp
 	utils-nodexm
 	utils-dockeragent"
