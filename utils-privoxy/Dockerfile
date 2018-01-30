@@ -1,5 +1,5 @@
 
-FROM kinfen/kadm:base
+FROM kinfen/utils-baseimage
 
 MAINTAINER Kinfen
 
