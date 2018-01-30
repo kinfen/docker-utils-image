@@ -17,12 +17,14 @@ RUN mkdir /ss /ss/logs
 WORKDIR /ss
 
 # Copy the current directory contents into the container at /app
-ADD ./*.json ./
+ADD ./*.json /ss
+ADD ./*.ini /ss
 
 # update the apt package
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
+	supervisor \
 	python-pip \
 	&& pip install --upgrade pip \
 	&& pip install shadowsocks \
@@ -31,5 +33,11 @@ RUN set -x \
 	&& apt-get autoremove \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /var/cache/apt/archives
+
+ADD ./supervisord.conf /etc
+
+ENTRYPOINT supervisord
+CMD ['-c', '/etc/supervisord.conf']
+
 
 #EXPOSE 5234 5235 5236 1086
