@@ -10,7 +10,7 @@
 # 	utils-ftp
 # 	utils-nodexm
 # 	utils-dockeragent"
-UTILS=""
+UTILS="utils-ss"
 
 for util in $UTILS; do
 	docker push kinfen/$util:latest
