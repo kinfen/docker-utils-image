@@ -2,7 +2,7 @@ version: "3"
 services:
   #ftp service we use ftp tu control all the ubuntu use directory now.
   ftp:
-    image:  kinfen/utils:vsftpd
+    image:  kinfen/utils-vsftpd
     ports:
       - "20-21:20-21"
       - "60000-60010:60000-60010"
@@ -52,7 +52,7 @@ services:
   #         cpus: "0.5"
   #         memory: 100M
   nginx:
-    image:  kinfen/utils:nginx
+    image:  kinfen/utils-nginx
     ports:
       - "80:80"
     networks:
@@ -91,7 +91,7 @@ services:
       - MONGOLAB_UR=mongodb://mystack_mongo/kadm
 
   jenkins:
-    image:  kinfen/utils:jenkins
+    image:  kinfen/utils-jenkins
     ports:
       - "8081:8080"
     networks:
@@ -108,7 +108,7 @@ services:
           memory: 600M
 
   agent:
-    image:  kinfen/kadm:agent
+    image:  kinfen/utils-dockeragent
     depends_on:
       - jenkins
     ports:
@@ -127,7 +127,7 @@ services:
           cpus: "0.8"
           memory: 600M
   mongo:
-    image:  kinfen/kadm:mongo
+    image:  kinfen/utils-mongo
     networks:
       - innernet
     ports:

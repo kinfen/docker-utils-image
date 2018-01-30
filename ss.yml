@@ -1,7 +1,7 @@
 version: "3"
 services:
   server:
-    image:  kinfen/utils:ss
+    image:  kinfen/utils-ss
     ports:
       - "5234-5236:5234-5236"
     networks:
