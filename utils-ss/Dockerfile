@@ -21,6 +21,7 @@ ADD ./*.json ./
 
 # update the apt package
 RUN set -x \
+	&& apt-get update \
 	&& apt-get install -y \
 	python-pip \
 	&& pip install --upgrade pip \
