@@ -10,7 +10,7 @@
 # 	utils-ftp
 # 	utils-nodexm
 # 	utils-dockeragent"
-UTILS="utils-dockeragent"
+UTILS="utils-nodexm utils-dockeragent"
 
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest

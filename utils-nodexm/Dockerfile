@@ -11,7 +11,7 @@ LABEL publishdate="2018-8-27"
 
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 8.8.0
-ENV NPM_VERSION 5.5.1
+ENV NPM_VERSION 5.6.0
 
 RUN addgroup -g 1000 node \
     && adduser -u 1000 -G node -s /bin/sh -D node \
