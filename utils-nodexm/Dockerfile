@@ -10,7 +10,7 @@ LABEL description="for app"
 LABEL publishdate="2018-8-27"
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 8.8.0
+ENV NODE_VERSION 8.9.4
 ENV NPM_VERSION 5.4.0
 
 RUN addgroup -g 1000 node \
@@ -59,7 +59,7 @@ RUN addgroup -g 1000 node \
 # RUN set -x && \
 # 	npm i -g npm@$NPM_VERSION
 
-ENTRYPOINT node
+CMD ["node"]
 
 
 
