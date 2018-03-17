@@ -1,5 +1,5 @@
 
-FROM alpine:3.6
+FROM alpine:3.7
 
 # Set one or more individual labels
 LABEL version="0.0.2"
