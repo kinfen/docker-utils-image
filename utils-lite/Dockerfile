@@ -8,7 +8,7 @@ LABEL publishdate="2018-3-17"
 
 ENV TIMEZONE Asia/Guangzhou
 RUN set -x \
-    apk update && apk upgrade &&  apk --update --no-cache add tzdata, redis \
+    apk update && apk upgrade &&  apk --update --no-cache add tzdata redis \
     && rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* \
 RUN ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
