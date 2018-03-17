@@ -10,9 +10,9 @@ ENV TIMEZONE Asia/Guangzhou
 RUN set -x \
     apk update && apk upgrade &&  apk --update --no-cache add tzdata redis \
     && rm -rf /var/cache/apk/* /tmp/* \ 
-	&& rm -rf /var/lib/apt/lists/* \
-RUN ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
-RUN echo $TIMEZONE > /etc/timezone
+	&& rm -rf /var/lib/apt/lists/* 
+    && ln -snf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
+    && echo $TIMEZONE > /etc/timezone
 
 RUN echo "root:1qazXSW@" | chpasswd
 
