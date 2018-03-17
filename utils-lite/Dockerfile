@@ -6,7 +6,7 @@ LABEL version="0.0.2"
 LABEL description="for lite image"
 LABEL publishdate="2018-3-17"
 
-ENV TIMEZONE Asia/Guangzhou
+ENV TIMEZONE Guangzhou
 RUN set -x \
     apk update && apk upgrade &&  apk --update --no-cache --virtual .buildstep add tzdata \
     && cp -rf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
