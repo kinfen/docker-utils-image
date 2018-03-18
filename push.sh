@@ -9,7 +9,8 @@
 # 	utils-nginx
 # 	utils-ftp
 # 	utils-nodexm
-# 	utils-dockeragent"
+# 	utils-dockeragent
+#	utils-redis"
 UTILS="utils-redis"
 
 for util in $UTILS; do
