@@ -22,7 +22,7 @@ RUN set -x \
 RUN set -x \
 	&& apt-get update && apt-get install -y mongodb-org \
 	&& rm -rf /var/lib/apt/lists/* \
- 	&& rm -rf /var/lib/mongodb \
+ 	&& rm -rf /var/lib/mongodb
 
 RUN set -x && mv /etc/mongod.conf /etc/mongo/mongod.conf
 
