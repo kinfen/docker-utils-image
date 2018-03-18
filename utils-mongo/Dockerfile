@@ -24,7 +24,9 @@ RUN set -x \
 	&& rm -rf /var/lib/apt/lists/* \
  	&& rm -rf /var/lib/mongodb \
 
+RUN set -x && mv /etc/mongod.conf /etc/mongo/mongod.conf
+
 EXPOSE 27017
-CMD ["mongod", "--logpath", "/var/log/mongo/mongo.log"]
+CMD ["mongod", "--logpath", "/var/log/mongo/mongo.log", "--config", "/etc/mongo/mongod.conf"]
 
 

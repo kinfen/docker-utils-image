@@ -10,7 +10,7 @@
 # 	utils-ftp
 # 	utils-nodexm
 # 	utils-dockeragent"
-UTILS="utils-lite utils-redis"
+UTILS="utils-mongo"
 
 for util in $UTILS; do
 	docker push kinfen/$util:latest
