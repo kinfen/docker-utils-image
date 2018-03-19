@@ -10,8 +10,9 @@
 # 	utils-ftp
 # 	utils-nodexm
 # 	utils-dockeragent
-#	utils-redis"
-UTILS="utils-redis"
+#	utils-redis
+#	utils-mysql"
+UTILS="utils-mysql"
 
 for util in $UTILS; do
 	docker push kinfen/$util:latest
