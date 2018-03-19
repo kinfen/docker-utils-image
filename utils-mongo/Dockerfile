@@ -22,9 +22,11 @@ RUN set -x \
 RUN set -x \
 	&& apt-get update && apt-get install -y mongodb-org \
 	&& rm -rf /var/lib/apt/lists/* \
- 	&& rm -rf /var/lib/mongodb \
+ 	&& rm -rf /var/lib/mongodb
+
+RUN set -x && mkdir /etc/mongo && mv /etc/mongod.conf /etc/mongo/mongod.conf
 
 EXPOSE 27017
-CMD ["mongod", "--logpath", "/var/log/mongo/mongo.log"]
+CMD ["mongod", "--logpath", "/var/log/mongo/mongo.log", "--config", "/etc/mongo/mongod.conf"]
 
 

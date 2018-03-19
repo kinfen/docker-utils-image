@@ -9,8 +9,10 @@
 # 	utils-nginx
 # 	utils-ftp
 # 	utils-nodexm
-# 	utils-dockeragent"
-UTILS="utils-nodexm utils-dockeragent"
+# 	utils-dockeragent
+#	utils-redis"
+
+UTILS="utils-redis"
 
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest
