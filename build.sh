@@ -11,8 +11,9 @@
 # 	utils-nodexm
 # 	utils-dockeragent
 #	utils-redis
-#	utils-mysql"
-UTILS="utils-mysql"
+#	utils-mysql
+#	utils-tomcat"
+UTILS="utils-mysql utils-tomcat"
 
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest
