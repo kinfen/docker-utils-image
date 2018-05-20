@@ -1,5 +1,5 @@
-FROM golang:1.7.1-alpine
-MAINTAINER hteen <i@hteen.cn>
+FROM kinfen/utils-lite:latest
+MAINTAINER kinfen <kinfen.in@gmail.com>
 
 RUN apk add --no-cache git make openssl
 
