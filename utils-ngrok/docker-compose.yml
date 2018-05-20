@@ -1,0 +1,11 @@
+server:
+  image: kinfen/utils-ngrok:latest
+  ports:
+    - "8085:80"
+    - "4444:443"
+    - "4443:4443"
+  volumes:
+    - /data/ngrok:/myfiles
+  environment:
+    - DOMAIN="www.kstudio.top"
+  command: /bin/sh /server.sh

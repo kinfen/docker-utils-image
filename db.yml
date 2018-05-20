@@ -1,0 +1,31 @@
+version: "3"
+services:
+  #ftp service we use ftp tu control all the ubuntu use directory now.
+  mysql:
+    image:  kinfen/utils-mysql:latest
+    ports:
+      - "3306"
+
+    networks:
+      - webnet
+    environment:
+      - MYSQL_ROOT_PASSWORD=deadkill
+
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1"
+          memory: 2G
+
+networks:
+  webnet:
+    driver: overlay
+
+volumes:
+  dbdata:
+    driver: convoy
+  dblog:
+    driver: convoy
+

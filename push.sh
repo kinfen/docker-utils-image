@@ -13,7 +13,7 @@
 #	utils-redis
 #	utils-mysql
 #	utils-tomcat"
-UTILS="utils-mysql utils-tomcat"
+UTILS="utils-ngrok"
 
 for util in $UTILS; do
 	docker push kinfen/$util:latest
