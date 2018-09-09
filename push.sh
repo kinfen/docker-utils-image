@@ -12,8 +12,9 @@
 # 	utils-dockeragent
 #	utils-redis
 #	utils-mysql
+#	utils-cnpm.org
 #	utils-tomcat"
-UTILS="utils-ngrok"
+UTILS="utils-cnpm.org"
 
 for util in $UTILS; do
 	docker push kinfen/$util:latest

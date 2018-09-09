@@ -1,0 +1,10 @@
+{
+    "admins": {
+      "kinfen": "kinfen.in@gmail.com"
+    },
+    "scopes": [
+      "@kstudio"
+    ],
+    "enablePrivate": true,
+    "bindingHost": "0.0.0.0"
+  }
