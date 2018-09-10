@@ -27,6 +27,5 @@ RUN set -x apk del .build-deps \
 COPY config.json ${DATA_DIR}/
 
 EXPOSE 7001/tcp 7002/tcp
-VOLUME ["${DATA_DIR}"]
 WORKDIR ${HOME}
 CMD cnpmjs.org start
