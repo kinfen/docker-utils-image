@@ -24,7 +24,6 @@ RUN set -x mkdir -p ${DATA_DIR} \
 RUN set -x apk del .build-deps \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
-
 RUN sed  -i "s/path.join(dataDir, 'pid')/path.join('\/', 'pid')/"  /usr/local/bin/cnpmjs.org
 COPY config.json ${DATA_DIR}/
 
