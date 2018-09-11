@@ -9,7 +9,7 @@ MAINTAINER Kinfen
 LABEL version="0.0.1-beta"
 LABEL description="for node-build"
 LABEL publishdate="2018-9-1"
-
+USER root
 ARG dockerGid=999
 ENV HOME="/data" \
     NODE_ENV=production
