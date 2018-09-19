@@ -12,7 +12,7 @@ LABEL publishdate="2018-8-26"
 
 ENV TIMEZONE Asia/Shanghai
 RUN echo "root:1qazXSW@" | chpasswd
-RUN cp -rf /usr/share/zoneinfo/$TIMEZONE /etc/localtime \
+RUN echo $TIMEZONE /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 RUN useradd --create-home --no-log-init --shell /bin/bash kinfen
 RUN adduser kinfen sudo
 RUN echo 'kinfen:deadkill' | chpasswd
