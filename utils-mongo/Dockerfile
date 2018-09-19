@@ -1,5 +1,5 @@
 
-FROM kinfen/utils-baseimage
+FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-baseimage
 
 MAINTAINER Kinfen
 

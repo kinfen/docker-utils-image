@@ -1,5 +1,5 @@
 #!/bin/bash
-ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com"
+ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 UTILS="utils-lite
 	utils-baseimage
 	utils-vsftpd
@@ -17,5 +17,5 @@ UTILS="utils-lite
 # UTILS="utils-cnpm.org"
 
 for util in $UTILS; do
-	docker build ./$util -t $ALIYUN_SERVER/kstudio/$util:latest
+	docker build ./$util -t $ALIYUN_SERVER/$util:latest
 done

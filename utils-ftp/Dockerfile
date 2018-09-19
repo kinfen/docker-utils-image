@@ -1,4 +1,4 @@
-FROM kinfen/utils-lite
+FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite
 
 MAINTAINER kinfen
 

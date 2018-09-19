@@ -1,4 +1,4 @@
-FROM kinfen/utils-lite:latest
+FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
 
 RUN set -x \
     apk update && apk upgrade &&  apk --update --no-cache --virtual .buildstep add redis \

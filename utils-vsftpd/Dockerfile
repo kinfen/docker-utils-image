@@ -1,4 +1,4 @@
-FROM kinfen/utils-lite:latest
+FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
 
 MAINTAINER kinfen
 ENV FTP_USER=foo \

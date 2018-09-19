@@ -1,5 +1,5 @@
 
-FROM kinfen/utils-nodexm
+FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-nodexm
 
 MAINTAINER Kinfen
 

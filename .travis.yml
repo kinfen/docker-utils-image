@@ -12,4 +12,6 @@ script:
 after_success:
 - docker login -u $YUN_USERNAME -p $YUN_PASSWORD registry.cn-shenzhen.aliyuncs.com
 - sh push-yun.sh 
+- docker login -u $USER_USERNAME -p $USER_PASSWORD
+- sh push.sh 
   
