@@ -14,9 +14,7 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-mysql
 	# utils-cnpm.org
 	# utils-tomcat"
-UTILS="utils-mysql
-	utils-cnpm.org
-	utils-tomcat"
+UTILS="utils-gitlab"
 for util in $UTILS; do
 	docker build ./$util -t $ALIYUN_SERVER/$util:latest
 done
