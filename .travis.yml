@@ -6,12 +6,12 @@ before_install:
 - docker -v
 
 script:
-- docker login -u $YUN_USERNAME --password-stdin $YUN_PASSWORD registry.cn-shenzhen.aliyuncs.com
+- docker login --username=$YUN_USERNAME --password=$YUN_PASSWORD registry.cn-shenzhen.aliyuncs.com
 - sh build-yun.sh
 
 
 after_success:
 - sh push-yun.sh 
-- docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
+- docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
 - sh push.sh 
   
