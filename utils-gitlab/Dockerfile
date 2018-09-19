@@ -1,7 +1,7 @@
 FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-nodexm:latest
 
 MAINTAINER Kinfen
-
+ENV DIR=/home/git
 RUN apk add curl bash
 RUN curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.node.sh | bash
 
