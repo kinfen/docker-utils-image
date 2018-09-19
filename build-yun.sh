@@ -1,8 +1,8 @@
 #!/bin/bash
 ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
-UTILS="utils-lite
-	utils-baseimage
-	utils-vsftpd"
+# UTILS="utils-lite
+# 	utils-baseimage
+# 	utils-vsftpd"
 	# utils-privoxy
 	# utils-mongo
 	# utils-jenkins
@@ -14,7 +14,11 @@ UTILS="utils-lite
 	# utils-mysql
 	# utils-cnpm.org
 	# utils-tomcat"
-# UTILS="utils-cnpm.org"
+UTILS="utils-privoxy
+	utils-mongo
+	utils-jenkins
+	utils-nginx
+	utils-ftp"
 
 for util in $UTILS; do
 	docker build ./$util -t $ALIYUN_SERVER/$util:latest
