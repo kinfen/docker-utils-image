@@ -15,7 +15,7 @@ LABEL publishdate="2018-8-29"
 # update the apt package
 RUN set -x &&\
 	apt-get update &&\
-	apt-get install -y privoxy=3.0.24-1 &&\
+	apt-get install -y privoxy &&\
 	apt-get autoclean &&\              
  	apt-get clean     &&\                    
 	apt-get autoremove &&\

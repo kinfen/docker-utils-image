@@ -15,10 +15,7 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-cnpm.org
 	# utils-tomcat"
 UTILS="utils-privoxy
-	utils-mongo
-	utils-jenkins
-	utils-nginx
-	utils-ftp"
+	utils-mongo"
 
 for util in $UTILS; do
 	docker build ./$util -t $ALIYUN_SERVER/$util:latest
