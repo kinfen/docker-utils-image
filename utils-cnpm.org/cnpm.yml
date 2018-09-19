@@ -1,0 +1,22 @@
+version: "3"
+services:
+  #ftp service we use ftp tu control all the ubuntu use directory now.
+  service:
+    image:  kinfen/utils-cnpm.org
+    ports:
+      - "7001-7002:7001-7002"
+    networks:
+      - webnet
+    volumes:
+      - ./config.json:/data/.cnpmjs.org/config.json
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 100M
+
+networks:
+  webnet:
+    driver: overlay
