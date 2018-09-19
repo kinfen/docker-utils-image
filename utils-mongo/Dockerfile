@@ -9,6 +9,8 @@ LABEL version="0.0.1-beta"
 LABEL description="for mongod"
 LABEL publishdate="2018-8-27"
 
+ENV VERSION=4.1
+
 USER root
 WORKDIR /home/root
 
@@ -17,7 +19,7 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends software-properties-common gnupg2 \
 	&& apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6 \
-	&& echo "deb http://repo.mongodb.org/apt/ubuntu/dists/xenial/mongodb-org/3.4/multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+	&& echo "deb http://repo.mongodb.org/apt/ubuntu/$(cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d= -f2)/mongodb-org/$VERSION multiverse" | tee /etc/apt/sources.list.d/mongodb-org-$VERSION.list
 
 RUN set -x \
 	&& apt-get update && apt-get install -y mongodb-org \
