@@ -33,7 +33,7 @@ RUN addgroup -S git \
 
 # clone gitlab repo
 RUN  cd $GIT_HOME \
-	&& sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git  $GITLAB_TAG gitlab
+	&& sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b $GITLAB_TAG gitlab
 
 # fix permissions
 RUN cd $GIT_HOME/gitlab \
