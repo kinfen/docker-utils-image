@@ -6,7 +6,7 @@ MAINTAINER Kinfen
 # RUN mkdir -p $DIR && cd  $DIR
 # RUN curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.node.sh | bash
 # WORKDIR $DIR
-ENV GITLAB_BRANCH=11-3-stable
+ENV GITLAB_TAG=v11.2.3
 ENV GIT_HOME=/home/git
 
 ENV FQDN=www.kstudio.top
@@ -33,7 +33,7 @@ RUN addgroup -S git \
 
 # clone gitlab repo
 RUN  cd $GIT_HOME \
-	&& sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b $GITLAB_BRANCH gitlab
+	&& sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git  $GITLAB_TAG gitlab
 
 # fix permissions
 RUN cd $GIT_HOME/gitlab \
@@ -108,8 +108,7 @@ RUN cd $GIT_HOME \
 # gitaly
 RUN cd $GIT_HOME/gitlab \
 	&& mkdir -p $GIT_HOME/gitaly \
-	&& mkdir -p $GIT_HOME/repositories \
 	&& apk add ruby-bigdecimal ruby-irb tzdata \
-	&& sudo -u git -H bundle exec rake "gitlab:gitaly:install[$GIT_HOME/gitaly,$GIT_HOME/repositories]" RAILS_ENV=production
+	&& sudo -u git -H bundle exec rake "gitlab:gitaly:install[$GIT_HOME/gitaly]" RAILS_ENV=production
 
 
