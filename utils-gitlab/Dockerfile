@@ -19,7 +19,7 @@ RUN apk add -U \
 	rsync \
 	yarn \
 	nodejs \
-	ruby=~2.4.4 \
+	ruby=~2.5 \
 	sudo \
 	git
 
