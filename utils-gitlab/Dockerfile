@@ -1,4 +1,4 @@
-FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-nodexm:latest
+FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
 
 MAINTAINER Kinfen
 # ENV DIR=/home/git
@@ -17,6 +17,8 @@ RUN apk add -U \
 	openssh-server \
 	logrotate \
 	rsync \
+	yarn \
+	nodejs \
 	ruby=~2.4.4 \
 	sudo \
 	git
