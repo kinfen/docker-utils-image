@@ -1,10 +1,10 @@
 
-FROM alpine:3.7
+FROM alpine:3.8
 
 # Set one or more individual labels
-LABEL version="0.0.2"
+LABEL version="0.0.3"
 LABEL description="for lite image"
-LABEL publishdate="2018-3-17"
+LABEL publishdate="2018-9-20"
 
 ENV TIMEZONE Asia/Shanghai
 RUN set -x \
