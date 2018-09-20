@@ -109,6 +109,6 @@ RUN cd $GIT_HOME \
 RUN cd $GIT_HOME/gitlab \
 	&& mkdir -p $GIT_HOME/gitaly \
 	&& apk add ruby-bigdecimal ruby-irb tzdata \
-	&& sudo -u git -H bundle exec rake "gitlab:gitaly:install[$GIT_HOME/gitaly]" RAILS_ENV=production
+	&& sudo -u git -H bundle exec rake "gitlab:gitaly:install[$GIT_HOME/gitaly,https://gitlab.com/gitlab-org/gitaly.git]" RAILS_ENV=production
 
 
