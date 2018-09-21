@@ -12,7 +12,7 @@ RUN set -x \
 	go sudo
 RUN set -x \
 	sudo -u git -H go get -u -tags "sqlite" ${GO_RES} \
-	&& cd $(go env GOPATH)/src/${GO_RES} \
+	&& sudo -u git -H cd $(go env GOPATH)/src/${GO_RES} \
 	&& sudo -u git -H go build -tags "sqlite" 
 
 EXPOSE 3000
