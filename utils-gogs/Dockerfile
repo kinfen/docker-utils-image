@@ -3,23 +3,11 @@ MAINTAINER Kinfen
 
 ENV GIT_HOME=/home/git
 # create git user and config git
-ENV GO_RES=github.com/gogs/gogs
-ENV GOGOS_VERSION=0.11.66
-RUN addgroup -S git \
-    && adduser -G git -s /bin/sh -D -S git \
-	&& apk add --virtual .build-deps \
-	go sudo git
-RUN cd $GIT_HOME \
-	&& sudo -u git -H go get -u  github.com/gogs/gogs \
-	&& cd $GIT_HOME/go/src/$GO_RES \
-	&& sudo -u git -H go build 
-RUN apk del .build-deps \
-	&& rm -rf /var/cache/apk/* /tmp/* \ 
-	&& rm -rf /var/lib/apt/lists/* 
 
+
+RUN apk --upgrade add gogs
 EXPOSE 3000
-WORKDIR $GIT_HOME/go/src/$GO_RES
-ENTRYPOINT ./gogs
+ENTRYPOINT gogs
 CMD ["web"]
 
 
