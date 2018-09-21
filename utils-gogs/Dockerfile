@@ -12,8 +12,7 @@ RUN rm -rf /var/cache/apk/* /tmp/* \
 EXPOSE 3000
 USER git
 WORKDIR /home/git
-ENTRYPOINT gogs
-CMD ["web", "-c", "app.ini"]
+CMD ["gogs", "web", "-c", "app.ini"]
 
 
 
