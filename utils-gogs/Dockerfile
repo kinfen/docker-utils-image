@@ -12,7 +12,7 @@ RUN set -x \
 	go sudo git
 RUN set -x \
 	cd $GIT_HOME \
-	&& sudo -u git -H git clone --depth=1 -b v$GOGOS_VERSION https://github.com/gogs/gogs gogs
+	&& sudo -u git -H git clone --depth=1 -b v$GOGOS_VERSION https://github.com/gogs/gogs
 
 RUN set -x \
 	cd $GIT_HOME/gogs\
