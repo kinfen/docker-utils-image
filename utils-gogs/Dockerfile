@@ -9,6 +9,8 @@ RUN addgroup -S git \
 RUN rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
 COPY server.sh /usr/bin
+RUN chown -R git /usr/bin/server.sh
+USER git
 EXPOSE 3000
 CMD ["/bin/sh", "/usr/bin/server.sh"]
 
