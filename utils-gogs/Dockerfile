@@ -14,11 +14,11 @@ RUN set -x \
 	sudo -u git -H go get -u -tags "sqlite" ${GO_RES}
 
 RUN set -x \
-	cd $(sudo -u git -H go env GOPATH)/src/${GO_RES} \
+	cd $GIT_HOME/go/src/${GO_RES} \
 	&& sudo -u git -H go build -tags "sqlite" 
 
 EXPOSE 3000
-WORKDIR $(sudo -u git -H go env GOPATH)/src/${GO_RES}
+WORKDIR $GIT_HOME/go/src/${GO_RES}
 ENTRYPOINT ./gogs
 CMD ["web"]
 
