@@ -9,7 +9,7 @@ MAINTAINER Kinfen
 ENV GITLAB_TAG=v11.2.3
 ENV GIT_HOME=/home/git
 
-ENV FQDN=www.kstudio.top
+ENV FQDN=localhost
 ENV EMAIL_FROM=kinfen.in@gmail.com
 ENV EMAIL_REPLY_TO=kinfen.in@gmail.com
 
