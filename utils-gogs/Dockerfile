@@ -4,8 +4,8 @@ ENV GOGS_USER=git
 ENV GIT_HOME=/home/$GOGS_USER
 
 COPY server.sh /usr/bin
-RUN addgroup -S $GOGS_USER \
-    && adduser -G $GOGS_USER -D -S $GOGS_USER \
+RUN addgroup -S -g 1000 $GOGS_USER \
+    && adduser -u 1000 -G $GOGS_USER -D -S $GOGS_USER \
 	&& apk update && apk add gogs \
 	&& cp /etc/gogs/conf/app.ini $GIT_HOME/app.ini \
 	&& sed -i "s/RUN_USER = gogs/RUN_USER = git/" $GIT_HOME/app.ini 
