@@ -8,7 +8,7 @@ ENV GOGOS_VERSION=0.11.66
 RUN addgroup -S git \
     && adduser -G git -s /bin/sh -D -S git \
 	&& apk add --virtual .build-deps \
-	go sudo
+	go sudo git
 RUN cd $GIT_HOME \
 	&& sudo -u git -H go get -u -tags "sqlite" github.com/gogs/gogs \
 	&& cd $GIT_HOME/go/src/$GO_RES \
