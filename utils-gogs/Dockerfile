@@ -10,9 +10,9 @@ RUN addgroup -S git \
 	&& apk add --virtual .build-deps \
 	go sudo git
 RUN cd $GIT_HOME \
-	&& sudo -u git -H go get -u -tags "sqlite" github.com/gogs/gogs \
+	&& sudo -u git -H go get -u  github.com/gogs/gogs \
 	&& cd $GIT_HOME/go/src/$GO_RES \
-	&& sudo -u git -H go build -tags "sqlite"
+	&& sudo -u git -H go build 
 RUN apk del .build-deps \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
