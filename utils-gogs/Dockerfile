@@ -6,8 +6,8 @@ ENV GIT_HOME=/home/git
 ENV GO_RES=github.com/gogs/gogs
 ENV GOGOS_VERSION=0.11.66
 RUN set -x \
-	&& addgroup -S git \
-	&& adduser -S -D -h $GIT_HOME -G git -g git git \
+	addgroup -g 1000 git \
+    && adduser -u 1000 -G git -s /bin/sh -D git \
 	&& apk add --virtual .build-deps \
 	go sudo git
 RUN set -x \
