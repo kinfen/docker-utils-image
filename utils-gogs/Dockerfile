@@ -9,7 +9,7 @@ RUN rm -rf /var/cache/apk/* /tmp/* \
 	&& rm -rf /var/lib/apt/lists/* 
 COPY server.sh /usr/bin
 EXPOSE 3000
-CMD ["/bin/sh", "server.sh"]
+CMD ["/bin/sh", "/usr/bin/server.sh"]
 
 
 
