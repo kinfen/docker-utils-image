@@ -7,18 +7,18 @@ ENV GO_RES=github.com/gogs/gogs
 
 RUN set -x \
 	&& addgroup -S git \
-	&& adduser -S -D -h $GIT_HOME -s /bin/sh -G git -g git git \
+	&& adduser -S -D -h $GIT_HOME -G git -g git git \
 	&& apk add --virtual .build-deps \
 	go sudo
 RUN set -x \
-	sudo -u git -H go get -u -tags "sqlite" ${GO_RES}
+	sudo -u git -H go get -u -tags "sqlite" $GO_RES
 
 RUN set -x \
-	cd $GIT_HOME/go/src/${GO_RES} \
+	cd $GIT_HOME/go/src/$GO_RES \
 	&& sudo -u git -H go build -tags "sqlite" 
 
 EXPOSE 3000
-WORKDIR $GIT_HOME/go/src/${GO_RES}
+WORKDIR $GIT_HOME/go/src/$GO_RES
 ENTRYPOINT ./gogs
 CMD ["web"]
 
