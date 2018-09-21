@@ -4,15 +4,12 @@ ENV GIT_HOME=/home/git
 RUN addgroup -S git \
     && adduser -G git -D -S git \
 	&& apk update && apk add gogs \
-	&& cp /etc/gogs/conf/app.ini $GIT_HOME/app.ini \
-	&& chown -R git $GIT_HOME/app.ini
+	&& cp /etc/gogs/conf/app.ini $GIT_HOME/app.ini
 RUN rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
-
+COPY server.sh /usr/bin
 EXPOSE 3000
-USER git
-WORKDIR $GIT_HOME
-CMD ["gogs", "web", "-c", "$GIT_HOME/app.ini"]
+CMD ["/bin/sh", "server.sh"]
 
 
 
