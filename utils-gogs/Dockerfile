@@ -1,6 +1,6 @@
 FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
 MAINTAINER Kinfen
-
+ENV GIT_HOME=/home/git
 RUN addgroup -S git \
     && adduser -G git -D -S git \
 	&& apk update && apk add gogs \
