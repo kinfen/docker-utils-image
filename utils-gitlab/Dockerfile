@@ -6,7 +6,7 @@ MAINTAINER Kinfen
 # RUN mkdir -p $DIR && cd  $DIR
 # RUN curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.node.sh | bash
 # WORKDIR $DIR
-ENV GITLAB_TAG=v11.1.6
+ENV GITLAB_TAG=v11.0.5
 ENV GIT_HOME=/home/git
 
 ENV FQDN=localhost
