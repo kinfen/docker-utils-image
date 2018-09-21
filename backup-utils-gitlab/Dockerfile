@@ -1,5 +1,5 @@
 FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
-
+// TODO not complete
 MAINTAINER Kinfen
 # ENV DIR=/home/git
 # RUN apk add curl bash

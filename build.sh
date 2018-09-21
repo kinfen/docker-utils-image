@@ -13,8 +13,9 @@
 #	utils-redis
 #	utils-mysql
 #	utils-cnpm.org
-#	utils-tomcat"
-UTILS="utils-lite"
+#	utils-tomcat
+	# utils-gogs"
+UTILS="utils-gogs"
 
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest
