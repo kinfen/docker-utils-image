@@ -1,15 +1,22 @@
 FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
 MAINTAINER Kinfen
 ENV GIT_HOME=/home/git
+COPY server.sh /usr/bin
 RUN addgroup -S git \
     && adduser -G git -D -S git \
 	&& apk update && apk add gogs \
 	&& cp /etc/gogs/conf/app.ini $GIT_HOME/app.ini \
-	&& sed -i "s/RUN_USER = gogs/RUN_USER=git/" $GIT_HOME/app.ini 
+	&& sed -i "s/RUN_USER = gogs/RUN_USER = git/" $GIT_HOME/app.ini 
 RUN rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
-COPY server.sh /usr/bin
-RUN chown -R git /usr/bin/server.sh
+
+RUN chown -R git /var/cache/gogs \
+	&& chown -R git /var/cache/gogs \
+	&& chown -R git /usr/share/webapps/gogs \
+	&& chown -R git /var/lib/gogs \
+	&& chown -R git /var/log/gogs \
+	&& chown -R git /usr/bin/server.sh
+
 USER git
 EXPOSE 3000
 CMD ["/bin/sh", "/usr/bin/server.sh"]
