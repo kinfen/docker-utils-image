@@ -5,8 +5,7 @@ ENV GIT_HOME=/home/git
 # create git user and config git
 ENV GO_RES=github.com/gogs/gogs
 ENV GOGOS_VERSION=0.11.66
-RUN set -x \
-	addgroup -S git \
+RUN addgroup -S git \
     && adduser -G git -s /bin/sh -D -S git \
 	&& apk add --virtual .build-deps \
 	go sudo git
