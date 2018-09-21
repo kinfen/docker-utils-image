@@ -9,12 +9,10 @@ RUN addgroup -S git \
     && adduser -G git -s /bin/sh -D -S git \
 	&& apk add --virtual .build-deps \
 	go sudo git
-RUN set -x \
-	cd $GIT_HOME \
+RUN cd $GIT_HOME \
 	&& sudo -u git -H git clone --depth=1 -b v$GOGOS_VERSION https://github.com/gogs/gogs
 
-RUN set -x \
-	cd $GIT_HOME/gogs\
+RUN cd $GIT_HOME/gogs\
 	&& sudo -u git -H go build -tags "sqlite" 
 
 RUN apk del .build-deps \
