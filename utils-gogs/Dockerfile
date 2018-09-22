@@ -32,7 +32,7 @@ RUN sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/avatars \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/attachements \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/git \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/db \
-	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/bin/sessions \
+	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/bin/sessions
 
 
 EXPOSE 3000
