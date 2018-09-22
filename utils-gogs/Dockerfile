@@ -2,10 +2,10 @@ FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
 MAINTAINER Kinfen
 ENV GOGS_USER=gogs
 ENV GIT_HOME=/home/$GOGS_USER
-
+ENV DOCKER_ID=999
 COPY server.sh /usr/bin
-RUN addgroup -S $GOGS_USER \
-    && adduser -G $GOGS_USER -h $GIT_HOME -s /bin/sh -S -g "$GOGS_USER" $GOGS_USER \
+RUN addgroup  -S $GOGS_USER \
+    && adduser -u $DOCKER_ID -G $GOGS_USER -h $GIT_HOME -s /bin/sh -S -g "$GOGS_USER" $GOGS_USER \
 	&& apk update && apk add gogs sudo \
 	&& mkdir -p /usr/bin/custom/conf \
 	&& cp /etc/gogs/conf/app.ini /usr/bin/custom/conf/app.ini \
@@ -22,7 +22,8 @@ RUN chmod 777 -R /var/cache/gogs \
 	&& chmod 777 -R /var/lib/gogs \
 	&& chmod 777 -R /var/log/gogs \
 	&& chmod 777 -R /usr/bin/custom/conf \
-	&& chmod 755 -R /usr/bin/server.sh
+	&& chmod 755 -R /usr/bin/server.sh \
+	&& chown -R $GOGS_USER /var/lib/gogs
 
 EXPOSE 3000
 CMD ["/bin/sh", "/usr/bin/server.sh"]
