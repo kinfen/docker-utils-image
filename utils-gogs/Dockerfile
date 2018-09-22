@@ -2,10 +2,10 @@ FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
 MAINTAINER Kinfen
 ENV GOGS_USER=gogs
 ENV GIT_HOME=/home/$GOGS_USER
-ENV DOCKER_ID=999
+ENV DOCKER_ID=1000
 COPY server.sh /usr/bin
-RUN addgroup  -S $GOGS_USER \
-    && adduser -u $DOCKER_ID -G $GOGS_USER -h $GIT_HOME -s /bin/sh -S -g "$GOGS_USER" $GOGS_USER \
+RUN addgroup -g $DOCKER_ID  -S $GOGS_USER \
+    && adduser -G $GOGS_USER -h $GIT_HOME -s /bin/sh -S -g "$GOGS_USER" $GOGS_USER \
 	&& apk update && apk add gogs sudo \
 	&& mkdir -p /usr/bin/custom/conf \
 	&& cp /etc/gogs/conf/app.ini /usr/bin/custom/conf/app.ini \
