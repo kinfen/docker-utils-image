@@ -2,5 +2,5 @@
 set -x
 set -e
 echo "gogs is going to start" \
-&& gogs web -c ~/app.ini
+&& sudo -u gogs -H gogs web
     
