@@ -18,8 +18,9 @@ RUN apk add --no-cache --virtual .build-step \
 	&& sudo -u $GOGS_USER -H go build -tags "sqlite" \
 	&& mkdir -p $GIT_HOME/go/custom/conf/ \
 	&& cp $GIT_HOME/go/src/$SOURCE_PATH/conf/app.ini $GIT_HOME/go/custom/conf/app.ini \ 
-	&& cp -rf $GIT_HOME/go/src/$SOURCE_PATH/templates $GIT_HOME/go/bin \
-	&& cp -rf $GIT_HOME/go/src/$SOURCE_PATH/public $GIT_HOME/go/bin \
+	&& mkdir -p $GIT_HOME/go/bin/webapps \
+	&& cp -rf $GIT_HOME/go/src/$SOURCE_PATH/templates $GIT_HOME/go/bin/webapps \
+	&& cp -rf $GIT_HOME/go/src/$SOURCE_PATH/public $GIT_HOME/go/bin/webapps \
 	&& apk del .build-step \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* \
@@ -29,9 +30,10 @@ RUN apk add --no-cache --virtual .build-step \
 
 RUN sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/avatars \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/attachements \
-	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/attachements \
+	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/git \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/db \
-	&& sudo -u $GOGS_USER -H mkdir -p /var/cache/gogs/sessions
+	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/bin/sessions \
+
 
 EXPOSE 3000
 CMD ["/bin/sh", "/usr/bin/server.sh"]
