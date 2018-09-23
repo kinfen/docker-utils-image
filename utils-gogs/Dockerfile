@@ -27,13 +27,16 @@ RUN apk add --no-cache --virtual .build-step \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf $GIT_HOME/go/src \
 	&& rm -rf $GIT_HOME/.cache \
-	&& chown -R gogs:gogs $GIT_HOME/go/
+	&& chown -R gogs:gogs $GIT_HOME/go/ \
 
 RUN sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/avatars \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/attachements \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/git \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/db \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/bin/sessions
+
+RUN mkdir -p /var/log/gogs \
+	&& chown -R gogs:gogs /var/log/gogs
 
 EXPOSE 3000
 CMD ["/bin/sh", "/usr/bin/server.sh"]
