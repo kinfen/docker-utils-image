@@ -16,6 +16,7 @@ RUN apk add --no-cache --virtual .build-step \
 	&& sudo -u $GOGS_USER -H go get -u -tags "sqlite" $SOURCE_PATH \
 	&& cd $GIT_HOME/go/src/$SOURCE_PATH \
 	&& sudo -u $GOGS_USER -H go build -tags "sqlite" \
+	&& ln -s $GIT_HOME/go/bin/gogs /usr/bin/gogs \
 	&& mkdir -p $GIT_HOME/go/custom/conf/ \
 	&& cp $GIT_HOME/go/src/$SOURCE_PATH/conf/app.ini $GIT_HOME/go/custom/conf/app.ini \ 
 	&& mkdir -p $GIT_HOME/go/bin/webapps \
