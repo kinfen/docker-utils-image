@@ -6,9 +6,9 @@ MAINTAINER Kinfen
 # this image is base from nodejs and to install yarn in this step, it may use fo build apps or run apps
 
 # Set one or more individual labels
-LABEL version="0.0.1-beta"
+LABEL version="0.0.1"
 LABEL description="for node-build"
-LABEL publishdate="2018-9-1"
+LABEL publishdate="2018-9-23"
 USER root
 ARG dockerGid=999
 ENV HOME="/data" \
