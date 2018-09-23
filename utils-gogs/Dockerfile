@@ -35,7 +35,6 @@ RUN sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/avatars \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/db \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/bin/sessions
 
-USER gogs
 EXPOSE 3000
 CMD ["/bin/sh", "/usr/bin/server.sh"]
 
