@@ -7,9 +7,9 @@ ENV SOURCE_PATH=github.com/gogs/gogs
 COPY server.sh /usr/bin
 RUN addgroup -g $DOCKER_ID  -S $GOGS_USER \
     && adduser -G $GOGS_USER -h $GIT_HOME -s /bin/sh -S -g "$GOGS_USER" $GOGS_USER \
-	&& echo 'export GOROOT=~/local/go' >> $GIT_HOME/.profile \
-	&& echo 'export GOPATH=~/go' >> $GIT_HOME/.profile \
-	&& echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> $GIT_HOME/.profile
+	&& echo 'export GOROOT="~/local/go"' >> $GIT_HOME/.profile \
+	&& echo 'export GOPATH="~/go"' >> $GIT_HOME/.profile \
+	&& echo 'export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"' >> $GIT_HOME/.profile
 RUN apk add --no-cache --virtual .build-step \
 		 g++ libstdc++ go \
 	&& apk add --no-cache sudo git \
