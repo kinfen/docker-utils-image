@@ -8,10 +8,6 @@ ENV FTP_USER=foo \
     PASV_MIN=60000 \
     PASV_MAX=60010
 
-RUN \
-apk update && apk upgrade &&  apk --update add --no-cache  vsftpd openssl \
-&& apk --update add --no-cache --virtual .build-dependencies build-base linux-pam-dev curl tar   
-
 RUN echo "local_enable=YES" >> /etc/vsftpd/vsftpd.conf \
   && echo "chroot_local_user=YES" >> /etc/vsftpd/vsftpd.conf \
   && echo "allow_writeable_chroot=YES" >> /etc/vsftpd/vsftpd.conf \
@@ -42,14 +38,14 @@ RUN echo "local_enable=YES" >> /etc/vsftpd/vsftpd.conf \
   && echo "seccomp_sandbox=NO" >> /etc/vsftpd/vsftpd.conf \ 
   && echo "user_config_dir=/conf/vsftpd/users_config" >> /etc/vsftpd/vsftpd.conf \
   && sed -i "s/anonymous_enable=YES/anonymous_enable=NO/" /etc/vsftpd/vsftpd.conf  
-  
-
 
 COPY vsftpd_virtual /etc/pam.d/
 COPY vsftpd.sh /usr/sbin/
 
 RUN \
-  mkdir /pam && \
+apk update && apk upgrade &&  apk --update add --no-cache  vsftpd openssl \
+&& apk --update add --no-cache --virtual .build-dependencies build-base linux-pam-dev curl tar \
+&& mkdir /pam && \
   cd pam && \
   curl -sSL https://github.com/prapdm/libpam-pwdfile/archive/v1.0.tar.gz | tar xz --strip 1 && \
   make install && \
@@ -71,8 +67,7 @@ RUN \
   rm -rvf /tmp/* && \
   rm -rvf /src  && \
   rm -rvf /var/log/* 
- 
-
+  
 RUN chmod +x /usr/sbin/vsftpd.sh
 EXPOSE 20-21 $PASV_MIN-$PASV_MAX
 
