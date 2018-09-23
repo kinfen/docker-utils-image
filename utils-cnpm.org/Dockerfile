@@ -18,7 +18,7 @@ RUN set -x mkdir -p ${DATA_DIR}
 RUN set -x \
 	&& apk --update add --no-cache --virtual .build-deps \
 	python make gcc libgcc g++ \
-	&& npm install -g --build-from-source --registry=https://registry.npm.taobao.org --disturl=https://npm.taobao.org/mirrors/node --unsafe-perm cnpmjs.org cnpm sqlite3 \
+	&& npm install -g --build-from-source --unsafe-perm cnpmjs.org cnpm sqlite3 \
 	&& npm cache clean --force \
 	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
