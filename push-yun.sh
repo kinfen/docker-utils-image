@@ -14,8 +14,9 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-mysql
 	# utils-cnpm.org
 #	utils-tomcat
+	# utils-ngrok
 	# utils-gogs"
-UTILS="utils-gogs"
+UTILS="utils-ngrok"
 
 for util in $UTILS; do
 	docker push $ALIYUN_SERVER/$util:latest

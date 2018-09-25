@@ -1,5 +1,5 @@
 #!/bin/sh
 set -e
 echo "gogs is going to start"
-su - git
-gogs web -c ~/app.ini
+exec su - git
+exec gogs web -c ~/app.ini
