@@ -24,8 +24,9 @@ RUN set -x \
 	openssh \
 	&& sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
 	&& chmod 100 /usr/local/bin/ssh-entry.sh \
+	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
-	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/lib/apk/lists/* \
 	&& rm -rf /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_dsa_key \
 	&& mkdir -p /root/.ssh \
 	&& touch /root/.ssh/authorized_keys
