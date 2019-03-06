@@ -1,7 +1,7 @@
 FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
 MAINTAINER kinfen <kinfen.in@gmail.com>
 
-RUN apk add --no-cache git make openssl
+RUN apk add --no-cache git make openssl go
 
 RUN git clone https://github.com/tutumcloud/ngrok.git /ngrok
 
