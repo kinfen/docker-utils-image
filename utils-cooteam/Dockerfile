@@ -15,7 +15,7 @@ RUN addgroup -g $DOCKER_ID  -S $KOO_USER \
 USER KOO_USER
 RUN apk --update add --no-cache --virtual .build-step curl tar \
     && apk add --no-cache openjdk8 lsof \
-    && cd $KOO_HOME
+    && cd $KOO_HOME \
     && curl -L -o kooteam.tar.gz 'https://pangu.yimiyisu.com/home/download.do?app=kooteam&type=install' \
     && tar -xvf kooteam.tar.gz \
     && apk del .build-step && \
