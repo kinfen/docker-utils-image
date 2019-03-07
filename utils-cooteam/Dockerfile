@@ -10,19 +10,20 @@ RUN addgroup -g $DOCKER_ID  -S $KOO_USER \
 # 	&& echo 'export GOROOT="$HOME/local/go"' >> $GIT_HOME/.profile \
 # 	&& echo 'export GOPATH="$HOME/go"' >> $GIT_HOME/.profile \
 	&& echo 'export PATH="$PATH:$KOO_HOME"' >> $KOO_HOME/.profile 
-
-USER KOO_USER
 RUN apk --update add --no-cache --virtual .build-step curl tar \
     && apk add --no-cache openjdk8 lsof \
     && cd $KOO_HOME \
     && curl -L -o kooteam.tar.gz 'https://pangu.yimiyisu.com/home/download.do?app=kooteam&type=install' \
     && tar -xvf kooteam.tar.gz \
-    && apk del .build-step && \
+    && apk del .build-step \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/log/kooteam \
-	&& chown -R $KOO_USER:$KOO_USER /var/log/kooteam
+	&& chown -R $KOO_USER:$KOO_USER /var/log/kooteam \
+    && chown -R $KOO_USER:$KOO_USER $KOO_HOME
+
+USER $KOO_USER
 
 EXPOSE $PORT
 CMD ["/bin/sh", "./start.sh"]
