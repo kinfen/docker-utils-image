@@ -19,5 +19,6 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 UTILS="utils-kooteam"
 
 for util in $UTILS; do
+	docker tag kinfen/$util:latest $ALIYUN_SERVER/$util:latest
 	docker push $ALIYUN_SERVER/$util:latest
 done
