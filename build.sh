@@ -15,7 +15,7 @@
 #	utils-cnpm.org
 #	utils-tomcat
 	# utils-gogs"
-UTILS="utils-cooteam"
+UTILS="utils-kooteam"
 
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest
