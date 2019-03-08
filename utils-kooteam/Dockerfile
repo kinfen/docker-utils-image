@@ -25,7 +25,7 @@ RUN mkdir -p /var/log/kooteam \
     && chown -R $KOO_USER:$KOO_USER $KOO_HOME
 WORKDIR $KOO_HOME
 EXPOSE $PORT
-CMD ["/bin/sh", "run.sh 7053"]
+CMD ["/bin/sh", "/home/koo/run.sh 7053"]
 
 
 
