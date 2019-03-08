@@ -6,10 +6,10 @@ ENV DOCKER_ID=1000
 ENV PORT=7053
 
 RUN addgroup -g $DOCKER_ID  -S $KOO_USER \
-    && adduser -G $KOO_USER -h $KOO_HOME -s /bin/sh -S -g "$KOO_USER" $KOO_USER \
+    && adduser -G $KOO_USER -h $KOO_HOME -s /bin/sh -S -g "$KOO_USER" $KOO_USER
 # 	&& echo 'export GOROOT="$HOME/local/go"' >> $GIT_HOME/.profile \
 # 	&& echo 'export GOPATH="$HOME/go"' >> $GIT_HOME/.profile \
-	&& echo 'export PATH="$PATH:$KOO_HOME"' >> $KOO_HOME/.profile 
+	# && echo 'export PATH="$PATH:$KOO_HOME"' >> $KOO_HOME/.profile 
 RUN apk --update add --no-cache --virtual .build-step curl tar \
     && apk add --no-cache sudo openjdk8 lsof \
     && cd $KOO_HOME \
@@ -19,12 +19,13 @@ RUN apk --update add --no-cache --virtual .build-step curl tar \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* \
     && rm kooteam.tar.gz 
-COPY run.sh KOO_HOME
+COPY run.sh $KOO_HOME
 RUN mkdir -p /var/log/kooteam \
 	&& chown -R $KOO_USER:$KOO_USER /var/log/kooteam \
     && chown -R $KOO_USER:$KOO_USER $KOO_HOME
+WORKDIR $KOO_HOME
 EXPOSE $PORT
-CMD ["/bin/sh", "/home/koo/run.sh 7053"]
+CMD ["/bin/sh", "./run.sh 7053"]
 
 
 
