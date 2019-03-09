@@ -3,10 +3,9 @@ MAINTAINER Kinfen
 ENV NEW_USER=dzz
 ENV NEW_HOME=/home/$NEW_USER
 ENV DOCKER_ID=1000
-ENV PORT=8080
 ENV VERSION=2.02
 ENV GIT_NAME=dzzoffice
-
+ENV PORT=8080
 RUN addgroup -g $DOCKER_ID  -S $NEW_USER \
     && adduser -G $NEW_USER -h $NEW_HOME -s /bin/sh -S -g "$NEW_USER" $NEW_USER
 RUN apk --update add --no-cache --virtual .build-step git \
@@ -18,10 +17,10 @@ RUN apk --update add --no-cache --virtual .build-step git \
     && apk del .build-step \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
-
+    COPY server.sh $NEW_HOME/$GIT_NAME
 WORKDIR $NEW_HOME/$GIT_NAME
 EXPOSE $PORT
-ENTRYPOINT ["sudo", "-u", "$NEW_USER", "-H", "php", "-S", "0.0.0.0:$PORT"]
+CMD ["/bin/sh", "server.sh", "8080"]
 
 
 
