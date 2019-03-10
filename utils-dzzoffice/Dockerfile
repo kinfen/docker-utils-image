@@ -19,8 +19,8 @@ RUN apk --update add --no-cache --virtual .build-step git \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
     COPY server.sh $NEW_HOME/$GIT_NAME
-RUN echo "extension=xml" >> /etc/php7/php.ini \
-    && echo "error_log=/var/log/php_error.log" >> /etc/php7/php.ini
+# RUN echo "extension=xml" >> /etc/php7/php.ini \
+#     && echo "error_log=/var/log/php_error.log" >> /etc/php7/php.ini
 
 WORKDIR $NEW_HOME/$GIT_NAME
 EXPOSE $PORT
