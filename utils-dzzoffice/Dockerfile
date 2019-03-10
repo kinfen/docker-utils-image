@@ -1,4 +1,4 @@
-FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-lite:latest
+FROM php:7.3-alpine
 MAINTAINER Kinfen
 ENV NEW_USER=dzz
 ENV NEW_HOME=/home/$NEW_USER
