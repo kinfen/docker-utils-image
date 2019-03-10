@@ -18,6 +18,9 @@ RUN apk --update add --no-cache --virtual .build-step git \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
     COPY server.sh $NEW_HOME/$GIT_NAME
+RUN sed -i "s/;extension=xmlrpc/extension=xml/" /etc/php7/php.ini \
+    && sed -i "s/;error_log = php_errors.log/error_log = /var/log/php_error.log" /etc/php7/php.ini
+    
 WORKDIR $NEW_HOME/$GIT_NAME
 EXPOSE $PORT
 CMD ["/bin/sh", "server.sh", "8080"]
