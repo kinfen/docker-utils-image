@@ -22,6 +22,7 @@ RUN echo "extension=xml" >> /etc/php7/php.ini \
     && echo "error_log=/var/log/php_error.log" >> /etc/php7/php.ini \
     && sed -i "s/user = nobody/user = ${NEW_USER}/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/group = nobody/group = ${NEW_USER}/" /etc/php7/php-fpm.d/www.conf \
+    && sed -i "s/listen = 127.0.0.1:9000/listen = 9000/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;php_admin_value[error_log]/php_admin_value[error_log]/" /etc/php7/php-fpm.d/www.conf
 
 WORKDIR $NEW_HOME/$GIT_NAME
