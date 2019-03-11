@@ -5,7 +5,7 @@ ENV NEW_HOME=/home/$NEW_USER
 ENV DOCKER_ID=1000
 ENV VERSION=2.02
 ENV GIT_NAME=dzzoffice
-ENV PORT=8080
+ENV PORT=9000
 RUN addgroup -g $DOCKER_ID  -S $NEW_USER \
     && adduser -G $NEW_USER -h $NEW_HOME -s /bin/sh -S -g "$NEW_USER" $NEW_USER
 RUN apk --update add --no-cache --virtual .build-step git \
@@ -19,11 +19,15 @@ RUN apk --update add --no-cache --virtual .build-step git \
 	&& rm -rf /var/lib/apt/lists/* 
     COPY server.sh $NEW_HOME/$GIT_NAME
 RUN echo "extension=xml" >> /etc/php7/php.ini \
-    && echo "error_log=/var/log/php_error.log" >> /etc/php7/php.ini
+    && echo "error_log=/var/log/php_error.log" >> /etc/php7/php.ini \
+    && sed -i "s/user = nobody/user = ${NEW_USER}/" /etc/php7/php-fpm.d/www.conf \
+    && sed -i "s/group = nobody/group = ${NEW_USER}/" /etc/php7/php-fpm.d/www.conf \
+    && sed -i "s/;php_admin_value[error_log]/php_admin_value[error_log]/" /etc/php7/php-fpm.d/www.conf \
 
 WORKDIR $NEW_HOME/$GIT_NAME
 EXPOSE $PORT
-CMD ["/bin/sh", "server.sh", "8080"]
+ENTRYPOINT [ "php-fpm7" ]
+CMD [ "-F" ]
 
 
 
