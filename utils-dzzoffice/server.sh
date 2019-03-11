@@ -2,4 +2,5 @@
 set -x
 set -e
 echo "dzzoffice is going to start" \
-&& sudo -u dzz -H php -S 0.0.0.0:$1
+&& sudo -u dzz -H php-fpm7 -D \
+&& sudo -u dzz -H nginx -g "daemon off;";
