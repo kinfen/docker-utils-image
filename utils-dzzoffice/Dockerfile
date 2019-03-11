@@ -23,7 +23,7 @@ RUN echo "extension=xml" >> /etc/php7/php.ini \
     && sed -i "s/user = nobody/user = ${NEW_USER}/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/group = nobody/group = ${NEW_USER}/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/listen = 127.0.0.1:9000/listen = 9000/" /etc/php7/php-fpm.d/www.conf \
-    && sed -i "s/;listen.owner/listen.owner/" /etc/php7/php-fpm.d/www.conf \
+    && sed -i "s/;listen.owner = nobody/listen.owner = ${NEW_USER}/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;listen.group/listen.group/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;listen.mode/listen.mode/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;php_admin_value[error_log]/php_admin_value[error_log]/" /etc/php7/php-fpm.d/www.conf
