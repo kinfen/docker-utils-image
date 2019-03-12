@@ -11,7 +11,7 @@ RUN addgroup -g $DOCKER_ID  -S $NEW_USER \
 RUN apk --update add --no-cache --virtual .build-step git \
     && apk add --no-cache nginx php7 php7-fpm php7-mysqli php7-pdo_mysql php7-xml php7-simplexml php7-zip php7-curl \
     && cd $NEW_HOME \
-    && sudo -u $NEW_USER -H git clone --branch $VERSION https://github.com/zyx0814/$GIT_NAME.git \
+    && git clone --branch $VERSION https://github.com/zyx0814/$GIT_NAME.git \
     && apk del .build-step \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
