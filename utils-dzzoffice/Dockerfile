@@ -9,11 +9,9 @@ ENV PORT=80
 RUN addgroup -g $DOCKER_ID  -S $NEW_USER \
     && adduser -G $NEW_USER -h $NEW_HOME -s /bin/sh -S -g "$NEW_USER" $NEW_USER
 RUN apk --update add --no-cache --virtual .build-step git \
-    && apk add --no-cache sudo nginx php7 php7-fpm php7-mysqli php7-pdo_mysql php7-xml php7-simplexml php7-zip php7-curl \
+    && apk add --no-cache nginx php7 php7-fpm php7-mysqli php7-pdo_mysql php7-xml php7-simplexml php7-zip php7-curl \
     && cd $NEW_HOME \
     && sudo -u $NEW_USER -H git clone --branch $VERSION https://github.com/zyx0814/$GIT_NAME.git \
-    && chmod 666 -R $NEW_HOME/$GIT_NAME/config \
-    && chmod 666 -R $NEW_HOME/$GIT_NAME/data \
     && apk del .build-step \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
