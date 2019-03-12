@@ -41,7 +41,8 @@ RUN echo "extension=xml" >> /etc/php7/php.ini \
     # && sed -i "s/;listen.group/listen.group/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;listen.mode/listen.mode/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;php_admin_value[error_log]/php_admin_value[error_log]/" /etc/php7/php-fpm.d/www.conf \
-    && mkdir /run/nginx/
+    && mkdir /run/nginx/ \
+    && chmod 777 -R $NEW_HOME/$GIT_NAME
 # RUN chown $NEW_USER:$NEW_USER /var/log/nginx
 COPY dzznginx.conf /etc/nginx/conf.d/default.conf
 COPY server.sh $NEW_HOME/$GIT_NAME
