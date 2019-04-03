@@ -16,7 +16,7 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-tomcat
 	# utils-ngrok
 	# utils-gogs"
-UTILS="utils-dzzoffice"
+UTILS="utils-gogs"
 for util in $UTILS; do
 	docker build ./$util -t $ALIYUN_SERVER/$util:latest
 done
