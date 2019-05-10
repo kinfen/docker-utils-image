@@ -4,7 +4,5 @@
 deploy.appctl.path=aliyun-deploy.sh
 
 # 构建镜像地址
-build.image=registry.cn-shenzhen.aliyuncs.com/kstudio/utils-docker@sha256:78a95bebf006b65d6323b417f985d4c4868283f6bbdddbfc910b2ce59f227286
-
-
+build.image=registry.cn-shenzhen.aliyuncs.com/kstudio/utils-docker@sha256:1d2132bd6bb52769ec84ddfd726a1ec5f26f625a1ca3feca8b69f6668ed1b216
 build.command=sh aliyun-deploy.sh
