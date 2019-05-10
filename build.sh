@@ -14,8 +14,9 @@
 #	utils-mysql
 #	utils-cnpm.org
 #	utils-tomcat
+# utils-docker
 	# utils-gogs"
-UTILS="utils-gogs"
+UTILS="utils-docker"
 
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest
