@@ -1,8 +1,5 @@
 
 FROM registry.cn-beijing.aliyuncs.com/rdc-builds/base:1.0
-
-MAINTAINER Kinfen
-USER admin
 RUN set -x \
 	echo "安装 apt https 支持" \
 	&& sudo apt-get update \
