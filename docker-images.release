@@ -1,0 +1,10 @@
+# 请参考 https://help.aliyun.com/document_detail/59293.html 了解更多关于release文件的编写方式 
+
+# 构建源码语言类型
+code.language=scripts
+
+# 应用部署脚本
+deploy.appctl.path=deploy.sh
+
+# 构建镜像地址
+build.image=registry.cn-shenzhen.aliyuncs.com/kstudio/utils-docker@sha256:78a95bebf006b65d6323b417f985d4c4868283f6bbdddbfc910b2ce59f227286
