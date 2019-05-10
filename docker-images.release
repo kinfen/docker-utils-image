@@ -1,5 +1,7 @@
 # 请参考 https://help.aliyun.com/document_detail/59293.html 了解更多关于release文件的编写方式 
 
+code.language=scripts
+
 # 应用部署脚本
 deploy.appctl.path=aliyun-deploy.sh
 
