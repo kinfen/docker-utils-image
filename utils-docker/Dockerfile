@@ -19,4 +19,6 @@ RUN set -x \
 	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 	$(lsb_release -cs) \
 	stable" \
-	&&   apt-get update && apt-get install -y docker-ce
+	&&   apt-get update && apt-get install -y docker-ce \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/cache/apt/archives
