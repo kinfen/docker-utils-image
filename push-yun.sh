@@ -17,7 +17,7 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-ngrok
 	# utils-docker
 	# utils-gogs"
-UTILS="utils-docker"
+UTILS="utils-baseimage"
 
 for util in $UTILS; do
 	docker push $ALIYUN_SERVER/$util:latest
