@@ -20,5 +20,5 @@ RUN set -x \
 	$(lsb_release -cs) \
 	stable" \
 	&& sudo  apt-get update && sudo apt-get install -y docker-ce \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /var/cache/apt/archives
+	&& sudo rm -rf /var/lib/apt/lists/* \
+	&& sudo rm -rf /var/cache/apt/archives
