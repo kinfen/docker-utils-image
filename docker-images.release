@@ -3,8 +3,12 @@
 code.language=scripts
 
 # 应用部署脚本
-deploy.appctl.path=aliyun-deploy.sh
+#deploy.appctl.path=aliyun-deploy.sh
+
+utils-baseimage.docker.file=utils-baseimage/Dockerfile
+utils-baseimage.docker.repo=registry.cn-shenzhen.aliyuncs.com/kstudio/utils-baseimage
+utils-baseimage.docker.tag=latest
 
 # 构建镜像地址
 build.image=registry.cn-shenzhen.aliyuncs.com/kstudio/utils-docker@sha256:1d2132bd6bb52769ec84ddfd726a1ec5f26f625a1ca3feca8b69f6668ed1b216
-build.command=sh aliyun-deploy.sh
+#build.command=sh aliyun-deploy.sh
