@@ -4,9 +4,10 @@
 code.language=scripts
 
 # 应用部署脚本
-#deploy.appctl.path=aliyun-deploy.sh
-
-build.command=sh aliyun-deploy.sh
+deploy.appctl.path=aliyun-deploy.sh
 
 # 构建镜像地址
 build.image=registry.cn-shenzhen.aliyuncs.com/kstudio/utils-docker@sha256:78a95bebf006b65d6323b417f985d4c4868283f6bbdddbfc910b2ce59f227286
+
+
+build.command=sh aliyun-deploy.sh
