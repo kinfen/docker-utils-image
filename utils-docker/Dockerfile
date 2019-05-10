@@ -2,7 +2,7 @@
 FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-baseimage
 
 MAINTAINER Kinfen
-
+USER kinfen
 RUN set -x \
 	echo "安装 apt https 支持" \
 	&& sudo apt-get update \
