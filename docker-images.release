@@ -10,6 +10,6 @@ code.language=scripts
 #utils-baseimage.docker.tag=latest
 
 # 构建镜像地址
-build.image=registry.cn-shenzhen.aliyuncs.com/kstudio/utils-docker@sha256:1207ae546ec084d4d875ec046657c639ebb6cf4ebdf7e0f1bff4fdba3c16680d
+build.image=registry.cn-shenzhen.aliyuncs.com/kstudio/utils-docker@sha256:762b03a1e7268ab3b0a8be13fce0172493d3efef7be9079a4a843f63346ba15e
 
 build.command=sh aliyun-deploy.sh
