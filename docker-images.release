@@ -1,13 +1,16 @@
 # 请参考 https://help.aliyun.com/document_detail/59293.html 了解更多关于release文件的编写方式 
 
-#code.language=scripts
+code.language=scripts
 
 # 应用部署脚本
 #deploy.appctl.path=aliyun-deploy.sh
+utils-baseimage.docker.file=${PACKAGE_LABEL}/Dockerfile
+utils-baseimage.docker.repo=registry.cn-shenzhen.aliyuncs.com/kstudio/${PACKAGE_LABEL}
+utils-baseimage.docker.tag=latest
 
 
 # 构建镜像地址
-
+build.image=<your  repo url>
 build.image=registry.cn-shenzhen.aliyuncs.com/kstudio/utils-docker@sha256:681a2864052e3f68ee898be72d59358f08c95b23187d652c92330920d769d121
 
 build.command=sh aliyun-deploy.sh
