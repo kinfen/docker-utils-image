@@ -11,7 +11,7 @@ RUN set -x \
 	software-properties-common \
 	nfs-common \
 	&& echo "获取gpg key" \
-	&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
+	&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
 	&& echo "安装amd64的repository" \
 	&& add-apt-repository \
 	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
