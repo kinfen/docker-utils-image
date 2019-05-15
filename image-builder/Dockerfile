@@ -3,8 +3,8 @@ FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-baseimage
 MAINTAINER Kinfen
 RUN set -x \
 	echo "安装 docker 支持" \
-	&& sudo apt-get update \
-	&& sudo apt-get install -y\
+	&& apt-get update \
+	&& apt-get install -y\
 	apt-transport-https \
 	ca-certificates \
 	curl \
@@ -13,10 +13,10 @@ RUN set -x \
 	&& echo "获取gpg key" \
 	&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
 	&& echo "安装amd64的repository" \
-	&& sudo add-apt-repository \
+	&& add-apt-repository \
 	"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 	$(lsb_release -cs) \
 	stable" \
-	&& sudo  apt-get update && sudo apt-get install -y docker-ce \
-	&& sudo rm -rf /var/lib/apt/lists/* \
-	&& sudo rm -rf /var/cache/apt/archives
+	&&  apt-get update && apt-get install -y docker-ce \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/cache/apt/archives
