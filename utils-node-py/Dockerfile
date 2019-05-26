@@ -10,10 +10,7 @@ RUN apk add --no-cache --virtual .build-deps \
         libgcc \
         make \
         python2 \
-        libstdc++ \
-        linux-headers \
-        gnupg \
-        g++
+        libc-dev
 
 CMD ["node"]
 
