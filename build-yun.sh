@@ -1,7 +1,7 @@
 #!/bin/bash
 ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 # UTILS="utils-lite
-# 	utils-baseimage
+	# utils-baseimage
 # 	utils-vsftpd"
 	# utils-privoxy
 	# utils-mongo

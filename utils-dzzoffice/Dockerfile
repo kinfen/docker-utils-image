@@ -9,11 +9,9 @@ ENV PORT=80
 RUN addgroup -g $DOCKER_ID  -S $NEW_USER \
     && adduser -G $NEW_USER -h $NEW_HOME -s /bin/sh -S -g "$NEW_USER" $NEW_USER
 RUN apk --update add --no-cache --virtual .build-step git \
-    && apk add --no-cache sudo nginx php7 php7-fpm php7-mysqli php7-pdo_mysql php7-xml php7-simplexml php7-zip php7-curl \
+    && apk add --no-cache nginx php7 php7-fpm php7-mysqli php7-pdo_mysql php7-xml php7-simplexml php7-zip php7-curl \
     && cd $NEW_HOME \
-    && sudo -u $NEW_USER -H git clone --branch $VERSION https://github.com/zyx0814/$GIT_NAME.git \
-    && chmod 666 -R $NEW_HOME/$GIT_NAME/config \
-    && chmod 666 -R $NEW_HOME/$GIT_NAME/data \
+    && git clone --branch $VERSION https://github.com/zyx0814/$GIT_NAME.git \
     && apk del .build-step \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
@@ -41,7 +39,8 @@ RUN echo "extension=xml" >> /etc/php7/php.ini \
     # && sed -i "s/;listen.group/listen.group/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;listen.mode/listen.mode/" /etc/php7/php-fpm.d/www.conf \
     && sed -i "s/;php_admin_value[error_log]/php_admin_value[error_log]/" /etc/php7/php-fpm.d/www.conf \
-    && mkdir /run/nginx/
+    && mkdir /run/nginx/ \
+    && chmod 777 -R $NEW_HOME/$GIT_NAME
 # RUN chown $NEW_USER:$NEW_USER /var/log/nginx
 COPY dzznginx.conf /etc/nginx/conf.d/default.conf
 COPY server.sh $NEW_HOME/$GIT_NAME

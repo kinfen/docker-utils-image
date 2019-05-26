@@ -15,6 +15,7 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 #	utils-cnpm.org
 #	utils-tomcat
 	# utils-ngrok
+	# utils-docker
 	# utils-gogs"
 UTILS="utils-nodexm"
 
