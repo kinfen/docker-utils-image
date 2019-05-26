@@ -16,7 +16,7 @@
 #	utils-tomcat
 # utils-docker
 	# utils-gogs"
-UTILS="utils-nodexm"
+UTILS="utils-node-py"
 
 
 for util in $UTILS; do

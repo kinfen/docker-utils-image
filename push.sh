@@ -17,7 +17,7 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-ngrok
 	# utils-docker
 	# utils-gogs"
-UTILS="utils-nodexm"
+UTILS="utils-node-py"
 
 for util in $UTILS; do
 	docker tag $ALIYUN_SERVER/$util:latest kinfen/$util:latest
