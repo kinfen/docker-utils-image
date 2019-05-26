@@ -6,11 +6,11 @@ MAINTAINER Kinfen
 
 RUN apk add --no-cache --virtual .build-deps \
         gcc \
-        gnupg \
         libgcc \
         make \
         python2 \
-        libc-dev
+        libc-dev \
+        g++
 
 CMD ["node"]
 
