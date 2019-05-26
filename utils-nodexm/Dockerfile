@@ -18,6 +18,7 @@ RUN addgroup -g 1000 node \
     && apk add --no-cache \
         libstdc++ \
         python2 \
+        make \
     && apk add --no-cache --virtual .build-deps \
         binutils-gold \
         curl \
@@ -26,7 +27,6 @@ RUN addgroup -g 1000 node \
         gnupg \
         libgcc \
         linux-headers \
-        make \
   # gpg keys listed at https://github.com/nodejs/node#release-team
   && for key in \
     94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
