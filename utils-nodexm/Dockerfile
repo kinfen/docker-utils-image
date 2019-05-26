@@ -10,13 +10,14 @@ LABEL description="for app"
 LABEL publishdate="2018-8-27"
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 8.9.4
+ENV NODE_VERSION 8.13.0
 ENV NPM_VERSION 6.4.0
 
 RUN addgroup -g 1000 node \
     && adduser -u 1000 -G node -s /bin/sh -D node \
     && apk add --no-cache \
         libstdc++ \
+        python2 \
     && apk add --no-cache --virtual .build-deps \
         binutils-gold \
         curl \
@@ -26,7 +27,6 @@ RUN addgroup -g 1000 node \
         libgcc \
         linux-headers \
         make \
-        python \
   # gpg keys listed at https://github.com/nodejs/node#release-team
   && for key in \
     94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
