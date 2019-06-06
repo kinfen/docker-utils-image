@@ -14,6 +14,7 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 #	utils-mysql
 #	utils-cnpm.org
 #	utils-tomcat
+#	utils-node-py
 	# utils-ngrok
 	# utils-docker
 	# utils-gogs"

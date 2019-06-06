@@ -14,11 +14,13 @@
 #	utils-mysql
 #	utils-cnpm.org
 #	utils-tomcat
+#	utils-node-py
 # utils-docker
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
 UTILS="image-v2r"
+
 
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest
