@@ -20,7 +20,7 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
-UTILS="image-v2r"
+UTILS="utils-v2r"
 
 for util in $UTILS; do
 	docker tag $ALIYUN_SERVER/$util:latest kinfen/$util:latest

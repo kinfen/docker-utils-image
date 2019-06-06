@@ -19,7 +19,7 @@
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
-UTILS="image-v2r"
+UTILS="utils-v2r"
 
 
 for util in $UTILS; do
