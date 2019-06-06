@@ -17,9 +17,8 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-ngrok
 	# utils-docker
 	# utils-gogs
-	# utils-v2r
 	#image-builder"
-UTILS="image-v2r"
+UTILS="image-builder"
 for util in $UTILS; do
 	docker build ./$util -t $ALIYUN_SERVER/$util:latest
 done

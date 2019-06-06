@@ -1,7 +1,7 @@
 #!/bin/bash
 ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 # UTILS="utils-lite
-	# utils-baseimage
+# 	utils-baseimage
 # 	utils-vsftpd"
 	# utils-privoxy
 	# utils-mongo
@@ -13,13 +13,12 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-redis
 	# utils-mysql
 	# utils-cnpm.org
-	# utils-tomcat
+#	utils-tomcat
 	# utils-ngrok
 	# utils-docker
-	# utils-gogs
-	# utils-v2r
-	#image-builder"
-UTILS="image-v2r"
+	# utils-gogs"
+UTILS="image-builder"
+
 for util in $UTILS; do
-	docker build ./$util -t $ALIYUN_SERVER/$util:latest
+	docker push $ALIYUN_SERVER/$util:latest
 done
