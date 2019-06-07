@@ -1,6 +1,7 @@
 FROM registry.cn-shenzhen.aliyuncs.com/kstudio/utils-baseimage:latest as builder
 
-RUN apt-get update \
+RUN set -x \
+    && apt-get update \
     && apt-get install curl -y \
     && curl -L -o /tmp/go.sh https://install.direct/go.sh \
     && chmod +x /tmp/go.sh \
