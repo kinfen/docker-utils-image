@@ -14,7 +14,6 @@ RUN  /tmp/go.sh
 COPY config.json /etc/v2ray/config.json
 
 RUN set -ex && \
-    mkdir /var/log/v2ray/ &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
 
