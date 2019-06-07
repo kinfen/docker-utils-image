@@ -5,10 +5,11 @@ RUN set -x \
     && apt-get install curl -y \
     && curl -L -o /tmp/go.sh https://install.direct/go.sh \
     && chmod +x /tmp/go.sh \
-    && sh /tmp/go.sh \
     && apt remove curl -y \
     && rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /var/cache/apt/archives
+    
+RUN  /tmp/go.sh 
 
 COPY config.json /etc/v2ray/config.json
 
