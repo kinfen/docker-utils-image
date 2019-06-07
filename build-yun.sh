@@ -16,7 +16,8 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-tomcat
 	# utils-ngrok
 	# utils-node-py"
-UTILS="utils-v2r"
+UTILS="utils-baseimage 
+utils-v2r"
 
 for util in $UTILS; do
 	docker build ./$util -t $ALIYUN_SERVER/$util:latest
