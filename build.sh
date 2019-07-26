@@ -19,8 +19,7 @@
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
-UTILS="utils-baseimage
-utils-v2r"
+UTILS="utils-lite utils-mysql utils-tomcat platform-drone"
 
 
 for util in $UTILS; do
