@@ -27,7 +27,7 @@ RUN set -x \
     && mkdir /etc/tomcat && cd /etc/tomcat \ 
     && wget https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_VERSION_B/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.zip -O tomcat.zip \
     && unzip tomcat.zip \
-    && cd ${TOMCAT_HOME}webapps && rm -rf * \
+    && rm -rf ${TOMCAT_HOME}webapps/* \
     && rm tomcat.zip
 
 COPY server.sh ${TOMCAT_HOME}
