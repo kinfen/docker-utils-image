@@ -18,7 +18,7 @@ RUN addgroup -g $DOCKER_ID  -S $USER_NAME \
 
 RUN set -x \
     apk update && apk upgrade \
-    && apk add openjdk7 sudo font-adobe-100dpi ttf-dejavu fontconfig \
+    && apk add openjdk7-jre sudo font-adobe-100dpi ttf-dejavu fontconfig \
     && fc-cache --force \
     && rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
@@ -26,7 +26,9 @@ RUN set -x \
 RUN set -x \
     && mkdir /etc/tomcat && cd /etc/tomcat \ 
     && wget https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_VERSION_B/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.zip -O tomcat.zip \
-    && unzip tomcat.zip  && rm tomcat.zip
+    && unzip tomcat.zip \
+    && cd ${TOMCAT_HOME}/webapps && rm -rf ./ \
+    && rm tomcat.zip
 
 COPY server.sh ${TOMCAT_HOME}
 
