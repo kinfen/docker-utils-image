@@ -19,7 +19,7 @@
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
-UTILS="utils-gogs"
+UTILS="utils-jre7 utils-tomcat utils-nginx"
 
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest

@@ -2,7 +2,7 @@
 FROM alpine:3.9
 
 # Set one or more individual labels
-LABEL version="0.0.1"
+LABEL version="0.0.2"
 LABEL description="for lite image"
 LABEL publishdate="2019-7-23"
 
