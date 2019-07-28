@@ -14,9 +14,9 @@ RUN addgroup -g $DOCKER_ID  -S $GOGS_USER \
 RUN apk add --no-cache --virtual .build-step \
 		 g++ libstdc++ go \
 	&& apk add --no-cache sudo git \
-	&& go get -u -tags "sqlite" $SOURCE_PATH \
+	&& sudo -u $GOGS_USER -H go get -u -tags "sqlite" $SOURCE_PATH \
 	&& cd $GIT_HOME/go/src/$SOURCE_PATH \
-	&& go build -tags "sqlite" \
+	&& sudo -u $GOGS_USER -H go build -tags "sqlite" \
 	&& ln -s $GIT_HOME/go/bin/gogs /usr/bin/gogs \
 	&& mkdir -p $GIT_HOME/go/custom/conf/ \
 	&& cp $GIT_HOME/go/src/$SOURCE_PATH/conf/app.ini $GIT_HOME/go/custom/conf/app.ini \ 
@@ -30,11 +30,11 @@ RUN apk add --no-cache --virtual .build-step \
 	&& rm -rf $GIT_HOME/.cache \
 	&& chown -R $GOGS_USER:$GOGS_USER $GIT_HOME/go/
 
-RUN sudo -u $GOGS_USER -E mkdir -p $GIT_HOME/go/custom/avatars \
-	&& sudo -u $GOGS_USER -E mkdir -p $GIT_HOME/go/custom/attachements \
-	&& sudo -u $GOGS_USER -E mkdir -p $GIT_HOME/go/custom/git \
-	&& sudo -u $GOGS_USER -E mkdir -p $GIT_HOME/go/custom/db \
-	&& sudo -u $GOGS_USER -E mkdir -p $GIT_HOME/go/bin/sessions
+RUN sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/avatars \
+	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/attachements \
+	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/git \
+	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/db \
+	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/bin/sessions
 
 RUN mkdir -p /var/log/gogs \
 	&& chown -R $GOGS_USER:$GOGS_USER /var/log/gogs
