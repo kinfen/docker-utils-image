@@ -20,7 +20,7 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
-UTILS="utils-lite utils-gogs"
+UTILS="utils-gogs platform-drone"
 for util in $UTILS; do
 	docker tag $ALIYUN_SERVER/$util:latest kinfen/$util:latest
 	docker push kinfen/$util:latest
