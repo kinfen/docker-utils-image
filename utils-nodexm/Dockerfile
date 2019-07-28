@@ -51,12 +51,12 @@ RUN addgroup -g $DOCKER_ID $NODE_USER \
     && tar -xf "node-v$NODE_VERSION.tar.xz" \
     && cd "node-v$NODE_VERSION" \
     && ./configure \
-    && make -j$(getconf _NPROCESSORS_ONLN) \
-    && make install 1>log.log \
+    && make -j$(getconf _NPROCESSORS_ONLN) 1>m.log\
+    && make install 1>m1.log \
     && apk del .build-deps \
     && cd .. \
     && rm -Rf "node-v$NODE_VERSION" \
-    && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt log.log
+    && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt *.log
 
 CMD ["node"]
 
