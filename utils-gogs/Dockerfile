@@ -36,6 +36,8 @@ RUN sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/avatars \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/custom/db \
 	&& sudo -u $GOGS_USER -H mkdir -p $GIT_HOME/go/bin/sessions
 
+RUN sed -i "s/STATIC_ROOT_PATH = /STATIC_ROOT_PATH = \/home\/gogs\/go\/bin\/webapps\//" /home/${GOGS_USER}/go/custom/conf/app.ini
+
 RUN mkdir -p /var/log/gogs \
 	&& chown -R $GOGS_USER:$GOGS_USER /var/log/gogs
 
