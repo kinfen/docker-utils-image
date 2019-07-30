@@ -28,7 +28,7 @@ RUN addgroup -g $DOCKER_ID $NODE_USER \
         libgcc \
         linux-headers \
         make \
-        python 1>m.log\
+        python 1>/tmp/tmp.log \
   # gpg keys listed at https://github.com/nodejs/node#release-team
   && for key in \
     94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
@@ -51,12 +51,12 @@ RUN addgroup -g $DOCKER_ID $NODE_USER \
     && tar -xf "node-v$NODE_VERSION.tar.xz" \
     && cd "node-v$NODE_VERSION" \
     && ./configure \
-    && make -j$(getconf _NPROCESSORS_ONLN) 1>>m.log\
-    && make install 1>>m1.log \
+    && make -j$(getconf _NPROCESSORS_ONLN) 1>>/tmp/tmp.log\
+    && make install 1>>/tmp/tmp.log \
     && apk del .build-deps \
     && cd .. \
     && rm -Rf "node-v$NODE_VERSION" \
-    && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt *.log
+    && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt /tmp/*.log
 
 CMD ["node"]
 
