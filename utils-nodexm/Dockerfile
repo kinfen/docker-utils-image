@@ -28,7 +28,7 @@ RUN addgroup -g $DOCKER_ID $NODE_USER \
         libgcc \
         linux-headers \
         make \
-        python \
+        python 1>m.log\
   # gpg keys listed at https://github.com/nodejs/node#release-team
   && for key in \
     94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
