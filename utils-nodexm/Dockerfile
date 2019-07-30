@@ -51,8 +51,8 @@ RUN addgroup -g $DOCKER_ID $NODE_USER \
     && tar -xf "node-v$NODE_VERSION.tar.xz" \
     && cd "node-v$NODE_VERSION" \
     && ./configure \
-    && make -j$(getconf _NPROCESSORS_ONLN) 1>m.log\
-    && make install 1>m1.log \
+    && make -j$(getconf _NPROCESSORS_ONLN) 1>>m.log\
+    && make install 1>>m1.log \
     && apk del .build-deps \
     && cd .. \
     && rm -Rf "node-v$NODE_VERSION" \
