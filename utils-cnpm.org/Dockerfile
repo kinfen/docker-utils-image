@@ -17,7 +17,8 @@ RUN set -x mkdir -p ${DATA_DIR}
 RUN set -x \
 	&& apk --update add --no-cache --virtual .build-deps \
 	python make gcc libgcc g++ \
-	&& npm install -g --build-from-source --unsafe-perm sudo cnpmjs.org cnpm sqlite3 \
+	&& apk --update add --no-cache --virtual add sudo \
+	&& npm install -g --build-from-source --unsafe-perm cnpmjs.org cnpm sqlite3 \
 	&& npm cache clean --force \
 	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
