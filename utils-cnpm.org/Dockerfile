@@ -29,4 +29,4 @@ COPY server.sh /home/$NODE_USER
 RUN chown -R $NODE_USER:$NODE_USER $HOME /home/$NODE_USER
 
 EXPOSE 7001/tcp 7002/tcp
-CMD ["sh", "/home/$NODE_USER/server.sh"]
+CMD ["sh", "/home/node/server.sh"]
