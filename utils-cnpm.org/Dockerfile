@@ -19,7 +19,7 @@ RUN set -x \
 	&& apk --update add --no-cache --virtual .build-deps \
 	python make gcc libgcc g++ \
 	&& apk --update add --no-cache --virtual add sudo \
-	&& npm install -g --build-from-source --unsafe-perm cnpmjs.org cnpm sqlite3 --registry=https://r.npm.taobao.org \
+	&& npm install -g --build-from-source --unsafe-perm cnpmjs.org cnpm sqlite3 \
 	&& npm cache clean --force \
 	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
