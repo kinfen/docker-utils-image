@@ -25,9 +25,8 @@ RUN set -x \
 	&& rm -rf /var/lib/apt/lists/* 
 RUN sed  -i "s/path.join(dataDir, 'pid')/path.join('\/', 'pid')/"  /usr/local/lib/node_modules/cnpmjs.org/bin/cli.js
 COPY config.json ${DATA_DIR}/
-COPY server.sh /home/$NODE_USER
-
+COPY server.sh /usr/bin
 RUN chown -R $NODE_USER:$NODE_USER $HOME /home/$NODE_USER
 
 EXPOSE 7001/tcp 7002/tcp
-CMD ["sh", "/home/node/server.sh"]
+CMD ["sh", "/usr/bin/server.sh"]
