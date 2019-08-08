@@ -8,9 +8,8 @@ MAINTAINER Kinfen
 # Set one or more individual labels
 LABEL version="0.0.1"
 LABEL description="for node-build"
-LABEL publishdate="2018-9-23"
-USER root
-ARG dockerGid=999
+LABEL publishdate="2019-8-8"
+
 ENV HOME="/data" \
     NODE_ENV=production
 ENV DATA_DIR="${HOME}/.cnpmjs.org"
@@ -18,14 +17,16 @@ RUN set -x mkdir -p ${DATA_DIR}
 RUN set -x \
 	&& apk --update add --no-cache --virtual .build-deps \
 	python make gcc libgcc g++ \
-	&& npm install -g --build-from-source --unsafe-perm cnpmjs.org cnpm sqlite3 \
+	&& npm install -g --build-from-source --unsafe-perm sudo cnpmjs.org cnpm sqlite3 \
 	&& npm cache clean --force \
 	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
 RUN sed  -i "s/path.join(dataDir, 'pid')/path.join('\/', 'pid')/"  /usr/local/lib/node_modules/cnpmjs.org/bin/cli.js
 COPY config.json ${DATA_DIR}/
+COPY server.sh /home/$NODE_USER
+
+RUN chown -R $NODE_USER:$NODE_USER $HOME /home/$NODE_USER
 
 EXPOSE 7001/tcp 7002/tcp
-WORKDIR ${HOME}
-CMD cnpmjs.org start
+CMD ["sh", "/home/$NODE_USER/server.sh"]

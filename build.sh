@@ -19,7 +19,7 @@
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
-UTILS="utils-nodexm"
+UTILS="utils-cnpm.org"
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest
 done
