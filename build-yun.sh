@@ -18,7 +18,6 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-v2r
 	# utils-node-py"
 UTILS="utils-nodexm"
-
 for util in $UTILS; do
 	docker build ./$util -t $ALIYUN_SERVER/$util:latest
 done
