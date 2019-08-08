@@ -23,7 +23,7 @@ RUN set -x \
 	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk/* /tmp/* \ 
 	&& rm -rf /var/lib/apt/lists/* 
-RUN sed  -i "s/path.join(dataDir, 'pid')/path.join('\/', 'pid')/"  /usr/local/lib/node_modules/cnpmjs.org/bin/cli.js
+RUN sed  -i "s/path.join(dataDir, 'pid')/path.join('\/home/node', 'pid')/"  /usr/local/lib/node_modules/cnpmjs.org/bin/cli.js
 COPY config.json ${DATA_DIR}/
 COPY server.sh /usr/bin
 RUN chown -R $NODE_USER:$NODE_USER $HOME /home/$NODE_USER
