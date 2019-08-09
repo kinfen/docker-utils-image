@@ -10,6 +10,7 @@ RUN set -x \
 	curl \
 	software-properties-common \
 	nfs-common \
+	iptables \
 	&& echo "获取gpg key" \
 	&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
 	&& echo "安装amd64的repository" \
