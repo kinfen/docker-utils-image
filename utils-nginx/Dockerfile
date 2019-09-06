@@ -16,7 +16,8 @@ RUN apk --update add --no-cache sudo nginx \
 
 COPY server.sh /etc/nginx/
 COPY *.conf /etc/nginx/
-RUN chown -R $USER_NAME:$USER_NAME /etc/nginx /var/log/nginx /usr/lib/nginx /var/tmp/nginx /run/nginx/
+RUN chown -R $USER_NAME:$USER_NAME /etc/nginx /var/log/nginx /usr/lib/nginx /var/tmp/nginx /run/nginx/ \
+    && chmod +x  /etc/nginx/server.sh
 #RUN apt-add-repository ppa:nginx/stable && apt-get update && apt-get install -y nginx nginx-extras
 EXPOSE 80
 #ENTRYPOINT nginx
