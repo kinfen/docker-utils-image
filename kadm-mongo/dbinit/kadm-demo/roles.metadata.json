@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"kadm-demo.roles"},{"v":2,"key":{"name":1},"name":"name_1","background":true,"ns":"kadm-demo.roles"},{"v":2,"unique":true,"key":{"code":1},"name":"code_1","ns":"kadm-demo.roles","background":true}],"uuid":"bdbd436cae8a4b94b2714b8fd258fc5e"}

@@ -19,7 +19,7 @@
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
-UTILS="image-builder"
+# UTILS="kadm-mongo"
 for util in $UTILS; do
 	docker build ./$util -t kinfen/$util:latest
 done
