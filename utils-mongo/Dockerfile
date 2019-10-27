@@ -25,8 +25,9 @@ RUN set -x \
 	&& rm -rf /var/cache/apt/archives \
  	&& rm -rf /var/lib/mongodb
 
-RUN set -x && mkdir /etc/mongo && mv /etc/mongod.conf /etc/mongo/mongod.conf
-
+RUN set -x && mkdir -p /etc/mongo && mv /etc/mongod.conf /etc/mongo/mongod.conf
+RUN ls /var/log/mongo/ -l \
+	&& ls /etc/mongo/ -l 
 EXPOSE 27017
 CMD ["mongod", "--logpath", "/var/log/mongo/mongo.log", "--config", "/etc/mongo/mongod.conf"]
 
