@@ -25,7 +25,7 @@ RUN set -x \
 
 RUN set -x \
     && mkdir ${TOMCAT_HOME} && cd ${TOMCAT_HOME} \ 
-    && wget https://archive.apache.org/dist/tomcat/tomcat-$TOMCAT_VERSION_B/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.zip -O tomcat.zip \
+    && wget https://archive.apache.org/dist/tomcat/tomcat7/tomcat-$TOMCAT_VERSION/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.zip -O tomcat.zip \
     && unzip tomcat.zip \
     && mv ${TOMCAT_HOME}/apache-tomcat-$TOMCAT_VERSION/* . \
     && rm -rf ${TOMCAT_HOME}/webapps/* \

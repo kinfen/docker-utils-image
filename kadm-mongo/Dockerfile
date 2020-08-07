@@ -6,10 +6,10 @@ MAINTAINER Kinfen
 
 # Set one or more individual labels
 LABEL version="0.0.1-beta"
-LABEL description="for mongod"
-LABEL publishdate="2018-8-27"
 
-ENV DOCKER_ID 1000
+LABEL description="for kadm mongo db"
+LABEL publishdate="2019-10-16"
+
 
 ENV TIMEZONE Asia/Shanghai
 RUN echo "root:1qazXSW@" | chpasswd
@@ -22,6 +22,7 @@ RUN set -x \
     && dpkg-reconfigure -f noninteractive tzdata \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/lib/tzdata
+
 
 RUN usermod -u $DOCKER_ID  mongodb \
 	&& groupmod -g ${DOCKER_ID} mongodb
@@ -40,3 +41,4 @@ COPY dbinit/kadm-demo/ /data/kadm-demo/
 COPY dbinit/*.sh /docker-entrypoint-initdb.d/
 
 RUN chmod -R 755 /docker-entrypoint-initdb.d/ /data/kadm-demo/
+
