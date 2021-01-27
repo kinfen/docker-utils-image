@@ -19,7 +19,8 @@
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
-UTILS="utils-v2r"
-for util in $UTILS; do
-	docker build ./$util -t kinfen/$util:latest
-done
+# UTILS="utils-v2r"
+# for util in $UTILS; do
+# 	docker build ./$util -t kinfen/$util:latest
+# done
+docker build ./utils-nodexm -t kinfen/utils-nodexm:10
