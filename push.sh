@@ -25,5 +25,4 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 # 	docker tag $ALIYUN_SERVER/$util:latest kinfen/$util:latest
 # 	docker push kinfen/$util:latest
 # done
-docker tag $ALIYUN_SERVER/utils-nodexm:10 kinfen/utils-nodexm:10
 docker push kinfen/utils-nodexm:10
