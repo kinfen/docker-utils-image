@@ -7,12 +7,12 @@ MAINTAINER Kinfen
 # Set one or more individual labels
 LABEL version="0.0.2"
 LABEL description="for node app"
-LABEL publishdate="2019-7-28"
+LABEL publishdate="2021-1-26"
 
 ENV DOCKER_ID 1000
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 8.9.4
-ENV NPM_VERSION 6.4.0
+ENV NODE_VERSION 10.23.0
+ENV NPM_VERSION 6.14.8
 ENV NODE_USER node
 
 RUN addgroup -g $DOCKER_ID $NODE_USER \

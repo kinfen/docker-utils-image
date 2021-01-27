@@ -20,7 +20,8 @@ ALIYUN_SERVER="registry.cn-shenzhen.aliyuncs.com/kstudio"
 	# utils-gogs"
 	# utils-v2r
 	#image-builder"
-UTILS="utils-v2r"
-for util in $UTILS; do
-	docker push $ALIYUN_SERVER/$util:latest
-done
+# UTILS="utils-v2r"
+# for util in $UTILS; do
+# 	docker push $ALIYUN_SERVER/$util:latest
+# done
+docker push $ALIYUN_SERVER/utils-nodexm:10
